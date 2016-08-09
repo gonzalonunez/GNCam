@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'GNCam_Example' do
+  pod 'GNCam', :path => '../'
+
+  target 'GNCam_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
