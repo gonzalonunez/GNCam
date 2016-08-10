@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/GNCam.svg?style=flat)](http://cocoapods.org/pods/GNCam)
 [![Platform](https://img.shields.io/cocoapods/p/GNCam.svg?style=flat)](http://cocoapods.org/pods/GNCam)
 
+As seen in [Giffy](https://appsto.re/us/gSgd2.i)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -13,16 +15,16 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-GNCam is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+GNCam is available through [CocoaPods](http://cocoapods.org). To use it, simply add the following line to your Podfile:
 
 ```ruby
+use_frameworks!
 pod "GNCam"
 ```
 
 ## Author
 
-gonzalonunez, gonzi@tcpmiami.com
+Gonzalo Nuñez, hello@gonzalonunez.me
 
 ## License
 
