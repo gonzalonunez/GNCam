@@ -1,0 +1,6 @@
+framework module GNCam {
+  umbrella header "GNCam-umbrella.h"
+
+  export *
+  module * { export * }
+}

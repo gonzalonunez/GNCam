@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'GNCam/Classes/**/*'
+  s.source_files = 'GNCam/Source/**/*'
   
   # s.resource_bundles = {
   #   'GNCam' => ['GNCam/Assets/*.png']

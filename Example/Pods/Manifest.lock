@@ -1,0 +1,16 @@
+PODS:
+  - GNCam (0.1.0)
+
+DEPENDENCIES:
+  - GNCam (from `../`)
+
+EXTERNAL SOURCES:
+  GNCam:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GNCam: 6da4b0782e7a4ee864acf63c3401d324df74d9cb
+
+PODFILE CHECKSUM: 51de4b4d89dd69bb45c35cfdf735072de4d89ba1
+
+COCOAPODS: 1.0.1
