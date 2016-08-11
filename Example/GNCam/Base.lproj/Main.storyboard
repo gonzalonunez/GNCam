@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11151.4"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,9 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="flq-th-Efk">
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="flq-th-Efk">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="f4Y-Tf-CRr"/>
+                                    <constraint firstAttribute="width" constant="156" placeholder="YES" id="lUJ-Eq-4PJ"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -29,8 +29,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="flq-th-Efk" secondAttribute="trailing" id="4bs-c0-c6L"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="flq-th-Efk" secondAttribute="bottom" id="NXB-Gl-ahW"/>
-                            <constraint firstItem="flq-th-Efk" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="height" multiplier="156:667" id="WxU-9F-xXI"/>
+                            <constraint firstItem="flq-th-Efk" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="njJ-Hp-3lz"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="LGe-v1-2o5" appends="YES" id="F3G-5j-5gk"/>

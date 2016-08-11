@@ -15,9 +15,10 @@ import GNCam
 
 class ViewController: UIViewController {
   
-  @IBOutlet weak var imageView: UIImageView!
-  @IBOutlet var viewTap: UITapGestureRecognizer!
-  @IBOutlet var viewDoubleTap: UITapGestureRecognizer!
+  @IBOutlet weak private var imageView: UIImageView!
+  
+  @IBOutlet private var viewTap: UITapGestureRecognizer!
+  @IBOutlet private var viewDoubleTap: UITapGestureRecognizer!
   
   let captureManager = CaptureManager.sharedManager
   
@@ -26,26 +27,38 @@ class ViewController: UIViewController {
     
     viewTap.require(toFail: viewDoubleTap)
     
-    imageView.contentMode = .scaleAspectFit
-    imageView.layer.shadowColor = UIColor.black.withAlphaComponent(0.7).cgColor
-    imageView.layer.shadowOffset = CGSize(width: -4, height: -4)
-    
-    try? captureManager.setUp(sessionPreset: AVCaptureSessionPresetHigh,
-                              previewLayerProvider: self,
-                              inputs: [.video],
-                              outputs: [.stillImage, .videoData]) { (error) in
-                                print("Woops, got error: \(error)")
+    captureManager.dataOutputDelegate = self
+    captureManager.setUp(sessionPreset: AVCaptureSessionPresetHigh,
+                         previewLayerProvider: self,
+                         inputs: [.video],
+                         outputs: [.stillImage, .videoData])
+    { (error) in
+      print("Woops, got error: \(error)")
     }
     
-    captureManager.dataOutputDelegate = self
     captureManager.startRunning()
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    let aspectRatioConstraint = NSLayoutConstraint(item: imageView,
+                                         attribute: .width,
+                                         relatedBy: .equal,
+                                         toItem: imageView,
+                                         attribute: .height,
+                                         multiplier: view.bounds.width / view.bounds.height,
+                                         constant: 0)
+    
+    NSLayoutConstraint.activate([aspectRatioConstraint])
   }
   
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
+  
+  //MARK: IBActions
+    
   @IBAction func handleViewTap(_ sender: UITapGestureRecognizer) {
     captureManager.captureStillImage() { (image, error) in
       self.imageView.image = image
@@ -53,7 +66,9 @@ class ViewController: UIViewController {
   }
   
   @IBAction func handleViewDoubleTap(_ sender: UITapGestureRecognizer) {
-    try? captureManager.toggleCamera()
+    captureManager.toggleCamera() { (error) -> Void in
+      print("Woops, got error: \(error)")
+    }
   }
   
 }

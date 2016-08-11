@@ -115,11 +115,10 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
                     previewLayerProvider: VideoPreviewLayerProvider,
                     inputs: [CaptureSessionInput],
                     outputs: [CaptureSessionOutput],
-                    errorHandler:ErrorCompletionHandler) throws
+                    errorHandler:ErrorCompletionHandler)
   {
-    try setSessionPreset(sessionPreset)
-    
     func setUpCaptureSession() throws {
+      try self.setSessionPreset(sessionPreset)
       self.videoDevice = try self.desiredDevice(withMediaType: AVMediaTypeVideo)
       
       self.removeAllInputs()
@@ -303,15 +302,17 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   
   /**
    Toggles the position of the camera if possible.
-   - parameter errorHandler: A closure of type `Error -> Void` that is called if adding the input for the desired device fails.
-   - Throws: `CaptureManagerError.CameraToggleFailed` if no device is found for the opposite camera (if there even is one).
+   - parameter errorHandler: A closure of type `Error -> Void` that is called on the **main thread** if no opposite device or input was found.
    */
-  public func toggleCamera(errorHandler: ErrorCompletionHandler? = nil) throws {
+  public func toggleCamera(errorHandler: ErrorCompletionHandler) {
     let position = videoDevicePosition.flipped()
-    let device = try desiredDevice(withMediaType: AVMediaTypeVideo, position: position)
+    let device = try? desiredDevice(withMediaType: AVMediaTypeVideo, position: position)
     
-    if (device == videoDevice) {
-      throw CaptureManagerError.CameraToggleFailed
+    if (device == nil || device == videoDevice) {
+      DispatchQueue.main.async {
+        errorHandler(CaptureManagerError.CameraToggleFailed)
+      }
+      return
     }
     
     sessionQueue.async {
@@ -323,7 +324,9 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
         try self.addInput(.video)
         self.captureSession.commitConfiguration()
       } catch let error as Error {
-        errorHandler?(error)
+        DispatchQueue.main.async {
+        errorHandler(error)
+        }
       }
     }
     
