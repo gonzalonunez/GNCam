@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11185.3" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11191" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11151.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,10 +24,11 @@
                                     <constraint firstAttribute="width" constant="156" placeholder="YES" id="lUJ-Eq-4PJ"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-oA-KMy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-oA-KMy">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9Ej-AY-Xl3"/>
-                                    <constraint firstAttribute="width" constant="50" id="W6Q-uG-CIx"/>
+                                    <constraint firstAttribute="height" constant="80" id="9Ej-AY-Xl3"/>
+                                    <constraint firstAttribute="width" constant="80" id="W6Q-uG-CIx"/>
                                 </constraints>
                                 <connections>
                                     <action selector="handleCaptureButtonTouchDown:" destination="vXZ-lx-hvc" eventType="touchDown" id="9DI-rp-jdn"/>
@@ -42,29 +43,29 @@
                             <constraint firstAttribute="trailing" secondItem="flq-th-Efk" secondAttribute="trailing" id="4bs-c0-c6L"/>
                             <constraint firstItem="GZo-oA-KMy" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="j5O-ag-M72"/>
                             <constraint firstItem="flq-th-Efk" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="njJ-Hp-3lz"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="GZo-oA-KMy" secondAttribute="bottom" constant="20" id="xKE-Qs-ujk"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="GZo-oA-KMy" secondAttribute="bottom" constant="20" id="vOi-GA-IAQ"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="LGe-v1-2o5" appends="YES" id="F3G-5j-5gk"/>
-                            <outletCollection property="gestureRecognizers" destination="xm6-Fe-c5y" appends="YES" id="U9l-e4-HvO"/>
+                            <outletCollection property="gestureRecognizers" destination="3wk-ae-uHw" appends="YES" id="5qr-Ke-89W"/>
                         </connections>
                     </view>
                     <connections>
                         <outlet property="captureButton" destination="GZo-oA-KMy" id="Nkm-Cz-fFD"/>
                         <outlet property="imageView" destination="flq-th-Efk" id="gDd-NE-uuc"/>
-                        <outlet property="viewDoubleTap" destination="xm6-Fe-c5y" id="PH4-Dv-BQJ"/>
+                        <outlet property="viewDoubleTap" destination="3wk-ae-uHw" id="TwJ-OZ-xCT"/>
                         <outlet property="viewTap" destination="LGe-v1-2o5" id="Uz3-AF-2aT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer cancelsTouchesInView="NO" id="LGe-v1-2o5">
+                <tapGestureRecognizer delaysTouchesEnded="NO" id="LGe-v1-2o5">
                     <connections>
                         <action selector="handleViewTap:" destination="vXZ-lx-hvc" id="fhb-i8-NxH"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer cancelsTouchesInView="NO" numberOfTapsRequired="2" id="xm6-Fe-c5y">
+                <tapGestureRecognizer delaysTouchesEnded="NO" numberOfTapsRequired="2" id="3wk-ae-uHw">
                     <connections>
-                        <action selector="handleViewDoubleTap:" destination="vXZ-lx-hvc" id="NBd-Rb-Uet"/>
+                        <action selector="handleViewDoubleTap:" destination="vXZ-lx-hvc" id="vJ2-UE-d6r"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

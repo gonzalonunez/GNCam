@@ -15,8 +15,10 @@ import GNCam
 
 class ViewController: UIViewController {
   
-  @IBOutlet weak private var imageView: UIImageView!
+  static private let captureButtonRestingRadius: CGFloat = 3
+  static private let captureButtonElevatedRadius: CGFloat = 7
   
+  @IBOutlet weak private var imageView: UIImageView!
   @IBOutlet weak private var captureButton: UIButton!
   
   @IBOutlet private var viewTap: UITapGestureRecognizer!
@@ -27,18 +29,8 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    captureButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
-    
-    viewTap.require(toFail: viewDoubleTap)
-    
-    captureManager.dataOutputDelegate = self
-    captureManager.setUp(sessionPreset: AVCaptureSessionPresetHigh,
-                         previewLayerProvider: self,
-                         inputs: [.video],
-                         outputs: [.stillImage, .videoData])
-    { (error) in
-      print("Woops, got error: \(error)")
-    }
+    setUpCaptureButton()
+    setUpCaptureManager()
     
     captureManager.startRunning()
   }
@@ -61,24 +53,49 @@ class ViewController: UIViewController {
     return true
   }
   
+  private func setUpCaptureButton() {
+    captureButton.layer.cornerRadius = 40
+    captureButton.layer.shadowColor = UIColor.black.cgColor
+    captureButton.layer.shadowOpacity = 0.5
+    captureButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+    captureButton.layer.shadowRadius = ViewController.captureButtonRestingRadius
+  }
+  
+  private func setUpCaptureManager() {
+    captureManager.dataOutputDelegate = self
+    captureManager.setUp(sessionPreset: AVCaptureSessionPresetHigh,
+                         previewLayerProvider: self,
+                         inputs: [.video],
+                         outputs: [.stillImage, .videoData])
+    { (error) in
+      print("Woops, got error: \(error)")
+    }
+  }
+  
   //MARK: IBActions
   
   @IBAction func handleCaptureButtonTouchDown(_ sender: UIButton) {
-    
+    captureButton.layer.animateShadowRadius(to: ViewController.captureButtonElevatedRadius)
+    captureButton.backgroundColor = captureButton.backgroundColor?.withAlphaComponent(0.7)
   }
   
   @IBAction func handleCaptureButtonTouchUpOutside(_ sender: UIButton) {
-    
+    captureButton.layer.animateShadowRadius(to: ViewController.captureButtonRestingRadius)
+    captureButton.backgroundColor = captureButton.backgroundColor?.withAlphaComponent(1)
   }
   
   @IBAction func handleCaptureButtonTouchUpInside(_ sender: UIButton) {
-    
-  }
-  
-  @IBAction func handleViewTap(_ sender: UITapGestureRecognizer) {
+    captureButton.layer.animateShadowRadius(to: ViewController.captureButtonRestingRadius)
+    captureButton.backgroundColor = captureButton.backgroundColor?.withAlphaComponent(1)
+
     captureManager.captureStillImage() { (image, error) in
       self.imageView.image = image
     }
+ }
+  
+  @IBAction func handleViewTap(_ tap: UITapGestureRecognizer) {
+    let loc = tap.location(in: view)
+    captureManager.focusAndExposure(at: loc)
   }
   
   @IBAction func handleViewDoubleTap(_ sender: UITapGestureRecognizer) {
@@ -100,8 +117,26 @@ extension ViewController: VideoPreviewLayerProvider {
 extension ViewController: VideoDataOutputDelegate {
   
   func captureManagerDidOutput(sampleBuffer: CMSampleBuffer) {
-    print("\(NSDate()) Capture manager did output a buffer.")
+    //print("\(NSDate()) Capture manager did output a buffer.")
   }
   
 }
 
+extension CALayer {
+  
+  func animateShadowRadius(to radius: CGFloat) {
+    let key = "com.ZenunSoftware.GNCam.animateShadowRadius"
+    
+    removeAnimation(forKey: key)
+    
+    let anim = CABasicAnimation(keyPath: #keyPath(shadowRadius))
+    anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+    anim.toValue = radius
+    anim.duration = 0.2
+    
+    add(anim, forKey: key)
+    shadowRadius = radius
+  }
+  
+  
+}

@@ -9,18 +9,18 @@
 import UIKit
 import AVFoundation
 
-class CapturePreviewView: UIView {
+public class CapturePreviewView: UIView {
   
-  override class var layerClass: AnyClass {
+  override public class var layerClass: AnyClass {
     return AVCaptureVideoPreviewLayer.self
   }
   
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setUp()
   }
   
-  override init(frame: CGRect) {
+  override public init(frame: CGRect) {
     super.init(frame: frame)
     setUp()
   }

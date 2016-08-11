@@ -32,6 +32,7 @@ public enum CaptureManagerError: Error {
   case SessionNotSetUp
   case MissingOutputConnection
   case CameraToggleFailed
+  case FocusExposureFailed
 }
 
 /// Error types for `CaptureManager` related to `AVCaptureStillImageOutput`
@@ -71,8 +72,8 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   private var stillImageOutput: AVCaptureStillImageOutput?
   private var videoDataOutput: AVCaptureVideoDataOutput?
   
-  weak public var dataOutputDelegate: VideoDataOutputDelegate?
-  weak private(set) var previewLayerProvider: VideoPreviewLayerProvider?
+  public weak var dataOutputDelegate: VideoDataOutputDelegate?
+  private(set) weak var previewLayerProvider: VideoPreviewLayerProvider?
   
   var desiredVideoOrientation: AVCaptureVideoOrientation {
     switch UIDevice.current.orientation {
@@ -293,7 +294,10 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
           }
         }
         
-        completion(possiblyFlipped, nil)
+        DispatchQueue.main.async {
+          completion(possiblyFlipped, nil)
+        }
+        
       }
       
     }
@@ -332,9 +336,44 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
     
   }
   
+  /**
+   Focuses the camera at `pointInView`.
+   - parameter pointInView: The point inside of the `AVCaptureVideoPreviewLayer`.
+   - Important: Do not normalize! This method handles the normalization for you. Simply pass in the point relative to the preview layer's coordinate system.
+   */
+  public func focusAndExposure(at pointInView: CGPoint, errorHandler: ErrorCompletionHandler? = nil) {
+    guard let device = self.videoDevice,
+              point = previewLayerProvider?.previewLayer.pointForCaptureDevicePoint(ofInterest: pointInView) else
+    {
+      errorHandler?(CaptureManagerError.FocusExposureFailed)
+      return
+    }
+    
+    sessionQueue.async {
+      do {
+        try device.lockForConfiguration()
+        if (device.isFocusPointOfInterestSupported && device.isFocusModeSupported(.autoFocus)) {
+          device.focusPointOfInterest = point
+          device.focusMode = .autoFocus
+        }
+        if (device.isExposurePointOfInterestSupported && device.isExposureModeSupported(.autoExpose)) {
+          device.exposurePointOfInterest = point
+          device.exposureMode = .autoExpose
+        }
+        device.unlockForConfiguration()
+      } catch let error as Error {
+        errorHandler?(error)
+      }
+      
+    }
+  }
+  
   //MARK: AVCaptureVideoDataOutputSampleBufferDelegate
   
-  public func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+  public func captureOutput(_ captureOutput: AVCaptureOutput!,
+                            didOutputSampleBuffer sampleBuffer: CMSampleBuffer!,
+                            from connection: AVCaptureConnection!)
+  {
     DispatchQueue.main.async {
       self.dataOutputDelegate?.captureManagerDidOutput(sampleBuffer: sampleBuffer)
     }
