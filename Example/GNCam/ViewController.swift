@@ -17,6 +17,8 @@ class ViewController: UIViewController {
   
   @IBOutlet weak private var imageView: UIImageView!
   
+  @IBOutlet weak private var captureButton: UIButton!
+  
   @IBOutlet private var viewTap: UITapGestureRecognizer!
   @IBOutlet private var viewDoubleTap: UITapGestureRecognizer!
   
@@ -24,6 +26,8 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    captureButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
     
     viewTap.require(toFail: viewDoubleTap)
     
@@ -58,7 +62,19 @@ class ViewController: UIViewController {
   }
   
   //MARK: IBActions
+  
+  @IBAction func handleCaptureButtonTouchDown(_ sender: UIButton) {
     
+  }
+  
+  @IBAction func handleCaptureButtonTouchUpOutside(_ sender: UIButton) {
+    
+  }
+  
+  @IBAction func handleCaptureButtonTouchUpInside(_ sender: UIButton) {
+    
+  }
+  
   @IBAction func handleViewTap(_ sender: UITapGestureRecognizer) {
     captureManager.captureStillImage() { (image, error) in
       self.imageView.image = image

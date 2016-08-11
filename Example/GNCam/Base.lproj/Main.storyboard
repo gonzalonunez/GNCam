@@ -24,12 +24,25 @@
                                     <constraint firstAttribute="width" constant="156" placeholder="YES" id="lUJ-Eq-4PJ"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-oA-KMy">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9Ej-AY-Xl3"/>
+                                    <constraint firstAttribute="width" constant="50" id="W6Q-uG-CIx"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="handleCaptureButtonTouchDown:" destination="vXZ-lx-hvc" eventType="touchDown" id="9DI-rp-jdn"/>
+                                    <action selector="handleCaptureButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yUp-7A-CM2"/>
+                                    <action selector="handleCaptureButtonTouchUpOutside:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="ZcW-BI-m50"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="flq-th-Efk" secondAttribute="trailing" id="4bs-c0-c6L"/>
+                            <constraint firstItem="GZo-oA-KMy" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="j5O-ag-M72"/>
                             <constraint firstItem="flq-th-Efk" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="njJ-Hp-3lz"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="GZo-oA-KMy" secondAttribute="bottom" constant="20" id="xKE-Qs-ujk"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="LGe-v1-2o5" appends="YES" id="F3G-5j-5gk"/>
@@ -37,6 +50,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="captureButton" destination="GZo-oA-KMy" id="Nkm-Cz-fFD"/>
                         <outlet property="imageView" destination="flq-th-Efk" id="gDd-NE-uuc"/>
                         <outlet property="viewDoubleTap" destination="xm6-Fe-c5y" id="PH4-Dv-BQJ"/>
                         <outlet property="viewTap" destination="LGe-v1-2o5" id="Uz3-AF-2aT"/>
