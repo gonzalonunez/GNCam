@@ -7,7 +7,17 @@ public protocol VideoPreviewLayerProvider: class {
   var previewLayer: AVCaptureVideoPreviewLayer { get }
 }
 
+public extension VideoPreviewLayerProvider {
+  var captureManager: CaptureManager {
+    return CaptureManager.sharedManager
+  }
+}
+
 public protocol VideoDataOutputDelegate: class {
+  /**
+   Called when the `CaptureManager` outputs a `CMSampleBuffer`.
+   - Important: This is **NOT** called on the main thread, but instead on `CaptureManager.kFramesQueue`.
+   */
   func captureManagerDidOutput(sampleBuffer: CMSampleBuffer)
 }
 
@@ -75,7 +85,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   public weak var dataOutputDelegate: VideoDataOutputDelegate?
   private(set) weak var previewLayerProvider: VideoPreviewLayerProvider?
   
-  var desiredVideoOrientation: AVCaptureVideoOrientation {
+  public var desiredVideoOrientation: AVCaptureVideoOrientation {
     switch UIDevice.current.orientation {
     case .portrait, .portraitUpsideDown, .faceUp, .faceDown, .unknown:
       return .portrait
@@ -228,11 +238,11 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   /// Start running the `AVCaptureSession`.
   public func startRunning(errorHandler: ErrorCompletionHandler? = nil) {
     sessionQueue.async {
-      if (self.captureSession.isRunning) { return }
       if (!self.didSetUp) {
         errorHandler?(CaptureManagerError.SessionNotSetUp)
         return
       }
+      if (self.captureSession.isRunning) { return }
       self.captureSession.startRunning()
     }
   }
@@ -286,16 +296,21 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
           return
         }
         
-        var possiblyFlipped = image
+        var flipped: UIImage?
+        let wantsFlipped = (self.videoDevicePosition == .front && self.mirrorsFrontCamera)
         
-        if (self.videoDevicePosition == .front && self.mirrorsFrontCamera) {
-          if let cgImage = image.cgImage {
-            possiblyFlipped = UIImage(cgImage: cgImage, scale: image.scale, orientation: .leftMirrored)
+        if (wantsFlipped) {
+          if #available(iOS 10.0, *) {
+            flipped = image.withHorizontallyFlippedOrientation()
+          } else {
+            if let cgImage = image.cgImage {
+              flipped = UIImage(cgImage: cgImage, scale: image.scale, orientation: .leftMirrored)
+            }
           }
         }
         
         DispatchQueue.main.async {
-          completion(possiblyFlipped, nil)
+          completion(flipped ?? image, nil)
         }
         
       }
@@ -329,7 +344,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
         self.captureSession.commitConfiguration()
       } catch let error as Error {
         DispatchQueue.main.async {
-        errorHandler(error)
+          errorHandler(error)
         }
       }
     }
@@ -342,8 +357,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    - Important: Do not normalize! This method handles the normalization for you. Simply pass in the point relative to the preview layer's coordinate system.
    */
   public func focusAndExposure(at pointInView: CGPoint, errorHandler: ErrorCompletionHandler? = nil) {
-    guard let device = self.videoDevice,
-              point = previewLayerProvider?.previewLayer.pointForCaptureDevicePoint(ofInterest: pointInView) else
+    guard let device = self.videoDevice, point = previewLayerProvider?.previewLayer.pointForCaptureDevicePoint(ofInterest: pointInView) else
     {
       errorHandler?(CaptureManagerError.FocusExposureFailed)
       return
@@ -374,12 +388,17 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
                             didOutputSampleBuffer sampleBuffer: CMSampleBuffer!,
                             from connection: AVCaptureConnection!)
   {
-    DispatchQueue.main.async {
-      self.dataOutputDelegate?.captureManagerDidOutput(sampleBuffer: sampleBuffer)
-    }
+    self.dataOutputDelegate?.captureManagerDidOutput(sampleBuffer: sampleBuffer)
   }
   
   //MARK: Helpers
+  
+  /// Asynchronously refreshes the videoOrientation of the `AVCaptureVideoPreviewLayer`.
+  public func refreshOrientation() {
+    sessionQueue.async {
+      self.previewLayerProvider?.previewLayer.connection.videoOrientation = self.desiredVideoOrientation
+    }
+  }
   
   /**
    Create `videoInput` and add it to `captureSession`.
@@ -441,7 +460,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   /**
    Find the first `AVCaptureDevice` of type `type`. Return default device of type `type` if nil.
    
-   - parameter type: The media type, such as AVMediaTypeVideo, AVMediaTypeAudio, or AVMediaTypeMixed.
+   - parameter type: The media type, such as AVMediaTypeVideo, AVMediaTypeAudio, or AVMediaTypeMuxed.
    - Throws: `CaptureManagerError.InvalidMediaType` if `type` is not a valid media type.
    - Returns: `AVCaptureDevice?`
    */

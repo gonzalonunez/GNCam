@@ -13,21 +13,28 @@ import CoreMedia
 
 import GNCam
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, VideoPreviewLayerProvider {
   
   static private let captureButtonRestingRadius: CGFloat = 3
   static private let captureButtonElevatedRadius: CGFloat = 7
   
   @IBOutlet weak private var imageView: UIImageView!
+  @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
+  
   @IBOutlet weak private var captureButton: UIButton!
   
   @IBOutlet private var viewTap: UITapGestureRecognizer!
   @IBOutlet private var viewDoubleTap: UITapGestureRecognizer!
   
-  let captureManager = CaptureManager.sharedManager
-  
+  var previewLayer: AVCaptureVideoPreviewLayer {
+    return view.layer as! AVCaptureVideoPreviewLayer
+  }
+    
   override func viewDidLoad() {
     super.viewDidLoad()
+        
+    viewTap.require(toFail: viewDoubleTap)
     
     setUpCaptureButton()
     setUpCaptureManager()
@@ -37,20 +44,26 @@ class ViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
-    let aspectRatioConstraint = NSLayoutConstraint(item: imageView,
-                                         attribute: .width,
-                                         relatedBy: .equal,
-                                         toItem: imageView,
-                                         attribute: .height,
-                                         multiplier: view.bounds.width / view.bounds.height,
-                                         constant: 0)
-    
-    NSLayoutConstraint.activate([aspectRatioConstraint])
+    refreshImageViewDimensions()
   }
   
   override var prefersStatusBarHidden: Bool {
     return true
+  }
+  
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    refreshImageViewDimensions()
+    captureManager.refreshOrientation()
+  }
+  
+  private func refreshImageViewDimensions() {
+    let maxDim = max(view.bounds.height, view.bounds.width)
+    let minDim = min(view.bounds.height, view.bounds.width)
+    
+    imageViewHeightConstraint.constant = (captureManager.desiredVideoOrientation == .portrait ? maxDim : minDim) * 0.4
+    imageViewWidthConstraint.constant = (captureManager.desiredVideoOrientation == .portrait ? minDim : maxDim) * 0.4
+    view.layoutIfNeeded()
   }
   
   private func setUpCaptureButton() {
@@ -106,14 +119,6 @@ class ViewController: UIViewController {
   
 }
 
-extension ViewController: VideoPreviewLayerProvider {
-  
-  var previewLayer: AVCaptureVideoPreviewLayer {
-    return view.layer as! AVCaptureVideoPreviewLayer
-  }
-  
-}
-
 extension ViewController: VideoDataOutputDelegate {
   
   func captureManagerDidOutput(sampleBuffer: CMSampleBuffer) {
@@ -122,7 +127,7 @@ extension ViewController: VideoDataOutputDelegate {
   
 }
 
-extension CALayer {
+private extension CALayer {
   
   func animateShadowRadius(to radius: CGFloat) {
     let key = "com.ZenunSoftware.GNCam.animateShadowRadius"
@@ -137,6 +142,5 @@ extension CALayer {
     add(anim, forKey: key)
     shadowRadius = radius
   }
-  
   
 }

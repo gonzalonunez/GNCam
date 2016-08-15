@@ -21,7 +21,7 @@
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="flq-th-Efk">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="f4Y-Tf-CRr"/>
-                                    <constraint firstAttribute="width" constant="156" placeholder="YES" id="lUJ-Eq-4PJ"/>
+                                    <constraint firstAttribute="width" constant="156" id="lUJ-Eq-4PJ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-oA-KMy">
@@ -53,6 +53,8 @@
                     <connections>
                         <outlet property="captureButton" destination="GZo-oA-KMy" id="Nkm-Cz-fFD"/>
                         <outlet property="imageView" destination="flq-th-Efk" id="gDd-NE-uuc"/>
+                        <outlet property="imageViewHeightConstraint" destination="f4Y-Tf-CRr" id="JYm-yJ-84e"/>
+                        <outlet property="imageViewWidthConstraint" destination="lUJ-Eq-4PJ" id="9wX-Vm-jiX"/>
                         <outlet property="viewDoubleTap" destination="3wk-ae-uHw" id="TwJ-OZ-xCT"/>
                         <outlet property="viewTap" destination="LGe-v1-2o5" id="Uz3-AF-2aT"/>
                     </connections>
