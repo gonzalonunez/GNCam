@@ -138,6 +138,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
       DispatchQueue.main.async {
         self.previewLayerProvider = previewLayerProvider
         previewLayerProvider.previewLayer.session = self.captureSession
+        previewLayerProvider.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
       }
       
       self.removeAllOutputs()

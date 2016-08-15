@@ -33,7 +33,7 @@ class ViewController: UIViewController, VideoPreviewLayerProvider {
     
   override func viewDidLoad() {
     super.viewDidLoad()
-        
+    
     viewTap.require(toFail: viewDoubleTap)
     
     setUpCaptureButton()
@@ -109,6 +109,20 @@ class ViewController: UIViewController, VideoPreviewLayerProvider {
   @IBAction func handleViewTap(_ tap: UITapGestureRecognizer) {
     let loc = tap.location(in: view)
     captureManager.focusAndExposure(at: loc)
+    
+    let indicator = FocusIndicatorView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+    indicator.center = loc
+    indicator.backgroundColor = .clear
+    indicator.pop(.down, animated: false)
+    
+    view.addSubview(indicator)
+    
+    indicator.pop(.up) { _ -> Void in
+      indicator.pop(.down) { _ -> Void in
+        indicator.removeFromSuperview()
+      }
+    }
+    
   }
   
   @IBAction func handleViewDoubleTap(_ sender: UITapGestureRecognizer) {

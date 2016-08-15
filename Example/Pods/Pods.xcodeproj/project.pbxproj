@@ -12,6 +12,7 @@
 		557F5DB74C26A215A20201FAA275C872 /* GNCam-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 57DC8BC44CBF4C9A0D3DA548660CABA7 /* GNCam-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4D4252CDD297E123A1D23D7C4EB6A9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		A55A1748F0ABE15D5B42FB646CD34454 /* Pods-GNCam_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F96568C04F88A98EC36B4281FFD3C70 /* Pods-GNCam_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB87245E1D62343B0020A3ED /* FocusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB87245D1D62343B0020A3ED /* FocusIndicatorView.swift */; };
 		ABB069711D598F0A00190FBB /* CaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB069701D598F0A00190FBB /* CaptureManager.swift */; };
 		ABB0697A1D59A31400190FBB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB069721D598F8A00190FBB /* AVFoundation.framework */; };
 		ABB0697B1D59A31400190FBB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB069741D598F9A00190FBB /* CoreMedia.framework */; };
@@ -54,6 +55,7 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		97C547A71D9352EB9A87844F49495E7D /* Pods-GNCam_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GNCam_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A855A914AB45655B441FCF45FEF214B2 /* Pods_GNCam_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GNCam_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB87245D1D62343B0020A3ED /* FocusIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusIndicatorView.swift; sourceTree = "<group>"; };
 		ABB069701D598F0A00190FBB /* CaptureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureManager.swift; path = Source/CaptureManager.swift; sourceTree = "<group>"; };
 		ABB069721D598F8A00190FBB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		ABB069741D598F9A00190FBB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
@@ -166,11 +168,36 @@
 			);
 			sourceTree = "<group>";
 		};
-		ABB0696F1D598F0000190FBB /* Source */ = {
+		AB8724591D6233E90020A3ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		AB87245B1D6233F30020A3ED /* View */ = {
 			isa = PBXGroup;
 			children = (
 				ABB0697E1D5ADF8300190FBB /* CapturePreviewView.swift */,
+				AB87245D1D62343B0020A3ED /* FocusIndicatorView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AB87245C1D6233F70020A3ED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				ABB069701D598F0A00190FBB /* CaptureManager.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		ABB0696F1D598F0000190FBB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				AB8724591D6233E90020A3ED /* Model */,
+				AB87245B1D6233F30020A3ED /* View */,
+				AB87245C1D6233F70020A3ED /* Controller */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -382,6 +409,7 @@
 				ABB0697F1D5ADF8300190FBB /* CapturePreviewView.swift in Sources */,
 				ABB069711D598F0A00190FBB /* CaptureManager.swift in Sources */,
 				E1CB396AF3DB17051D168D91CDDEA6FB /* GNCam-dummy.m in Sources */,
+				AB87245E1D62343B0020A3ED /* FocusIndicatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +480,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/GNCam/GNCam-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/GNCam/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/GNCam/GNCam.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -552,7 +580,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/GNCam/GNCam-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/GNCam/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/GNCam/GNCam.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
