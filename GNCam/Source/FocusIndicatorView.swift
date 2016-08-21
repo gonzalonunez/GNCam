@@ -80,7 +80,7 @@ public class FocusIndicatorView: UIView {
     
     NSLayoutConstraint.activate([centerX, centerY, height, width])
     
-    circleView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+    pop(.down, animated: false)
   }
   
   public func pop(_ dir: PopDirection, animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
@@ -124,6 +124,12 @@ public class FocusIndicatorView: UIView {
         },
                      completion: completion)
       
+    }
+  }
+  
+  public func popUpDown(completion: ((Bool) -> Void)? = nil) {
+    pop(.up) { _ -> Void in
+      self.pop(.down, completion: completion)
     }
   }
   

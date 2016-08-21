@@ -41,8 +41,15 @@ public enum CaptureManagerError: Error {
   case InvalidCaptureOutput
   case SessionNotSetUp
   case MissingOutputConnection
+  case MissingVideoDevice
+  case MissingPreviewLayerProvider
   case CameraToggleFailed
-  case FocusExposureFailed
+  case FocusNotSupported
+  case ExposureNotSupported
+  case FlashNotAvailable
+  case FlashModeNotSupported
+  case TorchNotAvailable
+  case TorchModeNotSupported
 }
 
 /// Error types for `CaptureManager` related to `AVCaptureStillImageOutput`
@@ -137,8 +144,8 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
       
       DispatchQueue.main.async {
         self.previewLayerProvider = previewLayerProvider
-        previewLayerProvider.previewLayer.session = self.captureSession
         previewLayerProvider.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        previewLayerProvider.previewLayer.session = self.captureSession
       }
       
       self.removeAllOutputs()
@@ -150,7 +157,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
     sessionQueue.async {
       do {
         try setUpCaptureSession()
-      } catch let error as Error {
+      } catch let error {
         DispatchQueue.main.async {
           errorHandler(error)
         }
@@ -343,7 +350,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
         self.videoDevice = device
         try self.addInput(.video)
         self.captureSession.commitConfiguration()
-      } catch let error as Error {
+      } catch let error {
         DispatchQueue.main.async {
           errorHandler(error)
         }
@@ -353,31 +360,95 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   }
   
   /**
-   Focuses the camera at `pointInView`.
-   - parameter pointInView: The point inside of the `AVCaptureVideoPreviewLayer`.
-   - Important: Do not normalize! This method handles the normalization for you. Simply pass in the point relative to the preview layer's coordinate system.
+   Sets the `AVCaptureFlashMode` for `videoDevice`.
+   - parameter mode: The `AVCaptureFlashMode` to set.
+   - parameter errorHandler: A closure of type `Error -> Void` that is called on the **main thread** if an error occurs while setting the `AVCaptureFlashMode`.
    */
-  public func focusAndExposure(at pointInView: CGPoint, errorHandler: ErrorCompletionHandler? = nil) {
-    guard let device = self.videoDevice, point = previewLayerProvider?.previewLayer.pointForCaptureDevicePoint(ofInterest: pointInView) else
-    {
-      errorHandler?(CaptureManagerError.FocusExposureFailed)
-      return
+  public func setFlash(_ mode: AVCaptureFlashMode, errorHandler: ErrorCompletionHandler? = nil) throws {
+    guard let videoDevice = videoDevice else {
+      throw CaptureManagerError.MissingVideoDevice
     }
     
     sessionQueue.async {
       do {
+        try videoDevice.lockForConfiguration()
+        if (!videoDevice.hasFlash || !videoDevice.isFlashAvailable) { throw CaptureManagerError.FlashNotAvailable }
+        if (!videoDevice.isFlashModeSupported(mode)) { throw CaptureManagerError.FlashModeNotSupported }
+        videoDevice.flashMode = mode
+        videoDevice.unlockForConfiguration()
+      }
+      catch let error {
+        DispatchQueue.main.async {
+          errorHandler?(error)
+        }
+      }
+    }
+    
+  }
+  
+  /**
+   Sets the `AVCaptureTorchMode` for `videoDevice`.
+   - parameter mode: The `AVCaptureTorchMode` to set.
+   - parameter errorHandler: A closure of type `Error -> Void` that is called on the **main thread** if an error occurs while setting the `AVCaptureTorchMode`.
+   */
+  public func setTorch(_ mode: AVCaptureTorchMode, errorHandler: ErrorCompletionHandler? = nil) throws {
+    guard let videoDevice = videoDevice else {
+      throw CaptureManagerError.MissingVideoDevice
+    }
+    
+    sessionQueue.async {
+      do {
+        try videoDevice.lockForConfiguration()
+        if (!videoDevice.hasTorch || videoDevice.isTorchAvailable) { throw CaptureManagerError.TorchNotAvailable }
+        if (!videoDevice.isTorchModeSupported(mode)) { throw CaptureManagerError.TorchModeNotSupported }
+        videoDevice.torchMode = mode
+        videoDevice.unlockForConfiguration()
+      }
+      catch let error {
+        DispatchQueue.main.async {
+          errorHandler?(error)
+        }
+      }
+    }
+    
+  }
+  
+  /**
+   Focuses the camera at `pointInView`.
+   - parameter pointInView: The point inside of the `AVCaptureVideoPreviewLayer`.
+   - parameter errorHandler: A closure of type `Error -> Void` that is called on the **main thread** if no device or previewLayerProvider was found or if we failed to lock the device for configuration.
+   - Important: Do not normalize! This method handles the normalization for you. Simply pass in the point relative to the preview layer's coordinate system.
+   */
+  public func focusAndExposure(at pointInView: CGPoint, errorHandler: ErrorCompletionHandler? = nil) throws {
+    guard let device = self.videoDevice else {
+      throw CaptureManagerError.MissingVideoDevice
+    }
+    
+    guard let previewLayerProvider = previewLayerProvider else {
+      throw CaptureManagerError.MissingPreviewLayerProvider
+    }
+    
+    let point = previewLayerProvider.previewLayer.pointForCaptureDevicePoint(ofInterest: pointInView)
+    
+    let isFocusSupported = device.isFocusPointOfInterestSupported && device.isFocusModeSupported(.autoFocus)
+    let isExposureSupported = device.isExposurePointOfInterestSupported && device.isExposureModeSupported(.autoExpose)
+    
+    sessionQueue.async {
+      do {
         try device.lockForConfiguration()
-        if (device.isFocusPointOfInterestSupported && device.isFocusModeSupported(.autoFocus)) {
+        if (isFocusSupported) {
           device.focusPointOfInterest = point
           device.focusMode = .autoFocus
         }
-        if (device.isExposurePointOfInterestSupported && device.isExposureModeSupported(.autoExpose)) {
+        if (isExposureSupported) {
           device.exposurePointOfInterest = point
           device.exposureMode = .autoExpose
         }
         device.unlockForConfiguration()
-      } catch let error as Error {
-        errorHandler?(error)
+      } catch let error {
+        DispatchQueue.main.async {
+          errorHandler?(error)
+        }
       }
       
     }
@@ -462,6 +533,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    Find the first `AVCaptureDevice` of type `type`. Return default device of type `type` if nil.
    
    - parameter type: The media type, such as AVMediaTypeVideo, AVMediaTypeAudio, or AVMediaTypeMuxed.
+   - parameter position: The `AVCaptureDevicePosition`. If nil, `videoDevicePosition` is used.
    - Throws: `CaptureManagerError.InvalidMediaType` if `type` is not a valid media type.
    - Returns: `AVCaptureDevice?`
    */

@@ -55,13 +55,14 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		97C547A71D9352EB9A87844F49495E7D /* Pods-GNCam_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GNCam_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A855A914AB45655B441FCF45FEF214B2 /* Pods_GNCam_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GNCam_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB87245D1D62343B0020A3ED /* FocusIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusIndicatorView.swift; sourceTree = "<group>"; };
+		AB87245D1D62343B0020A3ED /* FocusIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FocusIndicatorView.swift; path = Source/FocusIndicatorView.swift; sourceTree = "<group>"; };
+		AB87245F1D64C31F0020A3ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABB069701D598F0A00190FBB /* CaptureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureManager.swift; path = Source/CaptureManager.swift; sourceTree = "<group>"; };
 		ABB069721D598F8A00190FBB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		ABB069741D598F9A00190FBB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
 		ABB069751D598F9A00190FBB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
 		ABB069761D598F9A00190FBB /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
-		ABB0697E1D5ADF8300190FBB /* CapturePreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturePreviewView.swift; sourceTree = "<group>"; };
+		ABB0697E1D5ADF8300190FBB /* CapturePreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CapturePreviewView.swift; path = Source/CapturePreviewView.swift; sourceTree = "<group>"; };
 		AD715B1F858292EF8334A6DF2D6C9D33 /* Pods-GNCam_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GNCam_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		BAB352B0DC619ECBCF3EED0A7E570727 /* Pods-GNCam_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GNCam_Example-frameworks.sh"; sourceTree = "<group>"; };
 		C06F1CA5222ED44578643D7CD9B88360 /* Pods-GNCam_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GNCam_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -171,6 +172,7 @@
 		AB8724591D6233E90020A3ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AB87245F1D64C31F0020A3ED /* Assets.xcassets */,
 			);
 			name = Model;
 			sourceTree = "<group>";

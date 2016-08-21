@@ -18,9 +18,9 @@ class ViewController: UIViewController, VideoPreviewLayerProvider {
   static private let captureButtonRestingRadius: CGFloat = 3
   static private let captureButtonElevatedRadius: CGFloat = 7
   
-  @IBOutlet weak private var imageView: UIImageView!
-  @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
-  @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
+  //@IBOutlet weak private var imageView: UIImageView!
+  //@IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+  //@IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
   
   @IBOutlet weak private var captureButton: UIButton!
   
@@ -44,7 +44,7 @@ class ViewController: UIViewController, VideoPreviewLayerProvider {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    refreshImageViewDimensions()
+    //refreshImageViewDimensions()
   }
   
   override var prefersStatusBarHidden: Bool {
@@ -53,10 +53,11 @@ class ViewController: UIViewController, VideoPreviewLayerProvider {
   
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
-    refreshImageViewDimensions()
+    //refreshImageViewDimensions()
     captureManager.refreshOrientation()
   }
   
+  /*
   private func refreshImageViewDimensions() {
     let maxDim = max(view.bounds.height, view.bounds.width)
     let minDim = min(view.bounds.height, view.bounds.width)
@@ -65,6 +66,7 @@ class ViewController: UIViewController, VideoPreviewLayerProvider {
     imageViewWidthConstraint.constant = (captureManager.desiredVideoOrientation == .portrait ? minDim : maxDim) * 0.4
     view.layoutIfNeeded()
   }
+  */
   
   private func setUpCaptureButton() {
     captureButton.layer.cornerRadius = 40
@@ -102,25 +104,31 @@ class ViewController: UIViewController, VideoPreviewLayerProvider {
     captureButton.backgroundColor = captureButton.backgroundColor?.withAlphaComponent(1)
 
     captureManager.captureStillImage() { (image, error) in
-      self.imageView.image = image
+      //self.imageView.image = image
     }
  }
   
   @IBAction func handleViewTap(_ tap: UITapGestureRecognizer) {
     let loc = tap.location(in: view)
-    captureManager.focusAndExposure(at: loc)
     
-    let indicator = FocusIndicatorView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-    indicator.center = loc
-    indicator.backgroundColor = .clear
-    indicator.pop(.down, animated: false)
-    
-    view.addSubview(indicator)
-    
-    indicator.pop(.up) { _ -> Void in
-      indicator.pop(.down) { _ -> Void in
+    func showIndicatorView() {
+      let indicator = FocusIndicatorView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+      indicator.center = loc
+      indicator.backgroundColor = .clear
+      indicator.pop(.down, animated: false)
+      
+      view.addSubview(indicator)
+      
+      indicator.popUpDown() { _ -> Void in
         indicator.removeFromSuperview()
       }
+    }
+    
+    do {
+      try captureManager.focusAndExposure(at: loc)
+      showIndicatorView()
+    } catch let error {
+      print("Woops, got error: \(error)")
     }
     
   }

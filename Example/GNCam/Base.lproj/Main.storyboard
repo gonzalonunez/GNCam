@@ -18,12 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="flq-th-Efk">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="f4Y-Tf-CRr"/>
-                                    <constraint firstAttribute="width" constant="156" id="lUJ-Eq-4PJ"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-oA-KMy">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -40,9 +34,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="flq-th-Efk" secondAttribute="trailing" id="4bs-c0-c6L"/>
                             <constraint firstItem="GZo-oA-KMy" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="j5O-ag-M72"/>
-                            <constraint firstItem="flq-th-Efk" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="njJ-Hp-3lz"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="GZo-oA-KMy" secondAttribute="bottom" constant="20" id="vOi-GA-IAQ"/>
                         </constraints>
                         <connections>
@@ -52,9 +44,6 @@
                     </view>
                     <connections>
                         <outlet property="captureButton" destination="GZo-oA-KMy" id="Nkm-Cz-fFD"/>
-                        <outlet property="imageView" destination="flq-th-Efk" id="gDd-NE-uuc"/>
-                        <outlet property="imageViewHeightConstraint" destination="f4Y-Tf-CRr" id="JYm-yJ-84e"/>
-                        <outlet property="imageViewWidthConstraint" destination="lUJ-Eq-4PJ" id="9wX-Vm-jiX"/>
                         <outlet property="viewDoubleTap" destination="3wk-ae-uHw" id="TwJ-OZ-xCT"/>
                         <outlet property="viewTap" destination="LGe-v1-2o5" id="Uz3-AF-2aT"/>
                     </connections>
