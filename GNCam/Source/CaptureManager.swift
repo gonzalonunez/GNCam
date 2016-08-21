@@ -75,6 +75,10 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   private let captureSession: AVCaptureSession
   private(set) var didSetUp = false
   
+  public var isRunning: Bool {
+    return captureSession.isRunning
+  }
+  
   public var captureSessionPreset: String? {
     return captureSession.sessionPreset
   }

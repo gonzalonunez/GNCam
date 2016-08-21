@@ -14,51 +14,39 @@
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="CapturePreviewView" customModule="GNCam">
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-oA-KMy">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="9Ej-AY-Xl3"/>
-                                    <constraint firstAttribute="width" constant="80" id="W6Q-uG-CIx"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZ4-Lx-z0E">
+                                <state key="normal" title="Take Picture"/>
                                 <connections>
-                                    <action selector="handleCaptureButtonTouchDown:" destination="vXZ-lx-hvc" eventType="touchDown" id="9DI-rp-jdn"/>
-                                    <action selector="handleCaptureButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yUp-7A-CM2"/>
-                                    <action selector="handleCaptureButtonTouchUpOutside:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="ZcW-BI-m50"/>
+                                    <action selector="handleTakePictureButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cot-bA-bZG"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bcy-WG-InJ">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="lrB-tL-z12"/>
+                                    <constraint firstAttribute="width" constant="240" id="mUm-OT-JZc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="GZo-oA-KMy" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="j5O-ag-M72"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="GZo-oA-KMy" secondAttribute="bottom" constant="20" id="vOi-GA-IAQ"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="eZ4-Lx-z0E" secondAttribute="bottom" constant="50" id="1tV-Ke-fPO"/>
+                            <constraint firstItem="eZ4-Lx-z0E" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="AM7-pe-hHV"/>
+                            <constraint firstItem="bcy-WG-InJ" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="BV4-MP-mZ3"/>
+                            <constraint firstItem="bcy-WG-InJ" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Ebi-OW-1Qr"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="LGe-v1-2o5" appends="YES" id="F3G-5j-5gk"/>
-                            <outletCollection property="gestureRecognizers" destination="3wk-ae-uHw" appends="YES" id="5qr-Ke-89W"/>
-                        </connections>
                     </view>
                     <connections>
-                        <outlet property="captureButton" destination="GZo-oA-KMy" id="Nkm-Cz-fFD"/>
-                        <outlet property="viewDoubleTap" destination="3wk-ae-uHw" id="TwJ-OZ-xCT"/>
-                        <outlet property="viewTap" destination="LGe-v1-2o5" id="Uz3-AF-2aT"/>
+                        <outlet property="imageView" destination="bcy-WG-InJ" id="mY0-OA-90b"/>
+                        <outlet property="imageViewHeightConstraint" destination="lrB-tL-z12" id="2lz-Zo-nzo"/>
+                        <outlet property="imageViewWidthConstraint" destination="mUm-OT-JZc" id="6W7-eb-Svl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer delaysTouchesEnded="NO" id="LGe-v1-2o5">
-                    <connections>
-                        <action selector="handleViewTap:" destination="vXZ-lx-hvc" id="fhb-i8-NxH"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer delaysTouchesEnded="NO" numberOfTapsRequired="2" id="3wk-ae-uHw">
-                    <connections>
-                        <action selector="handleViewDoubleTap:" destination="vXZ-lx-hvc" id="vJ2-UE-d6r"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
