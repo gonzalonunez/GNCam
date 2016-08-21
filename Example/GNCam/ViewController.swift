@@ -30,6 +30,7 @@ class ViewController: UIViewController, CaptureViewControllerDelegate {
   override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
     refreshImageViewDimensions()
+    captureVC.captureManager.refreshOrientation()
   }
   
   private func refreshImageViewDimensions() {

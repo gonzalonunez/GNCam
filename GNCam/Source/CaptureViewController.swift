@@ -51,6 +51,19 @@ public class CaptureViewController: UIViewController, VideoPreviewLayerProvider 
     return btn
   }()
   
+  private lazy var cameraSwitchButton: UIButton = {
+    let btn = UIButton(frame: CGRect.zero)
+    
+    let type = type(of: self)
+    let bundle = Bundle(for: type)
+    let switchCamera = UIImage(named: "switchCamera", in: bundle, compatibleWith: nil)
+        
+    btn.setImage(switchCamera, for: .normal)
+    btn.addTarget(self, action: #selector(handleCameraSwitchButton(_:)), for: .touchUpInside)
+    
+    return btn
+  }()
+  
   private lazy var viewTap: UITapGestureRecognizer = {
     let tap = UITapGestureRecognizer(target: self, action: #selector(handleViewTap(_:)))
     tap.delaysTouchesEnded = false
@@ -75,7 +88,7 @@ public class CaptureViewController: UIViewController, VideoPreviewLayerProvider 
     super.viewDidLoad()
     setUp()
   }
-  
+    
   override public func loadView() {
     view = CapturePreviewView()
   }
@@ -98,9 +111,20 @@ public class CaptureViewController: UIViewController, VideoPreviewLayerProvider 
   }
   
   private func setUpButtons() {
-    
-    
+    setUpCameraSwitchButton()
     setUpCaptureButton()
+  }
+  
+  private func setUpCameraSwitchButton() {
+    cameraSwitchButton.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(cameraSwitchButton)
+    
+    let top = cameraSwitchButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 16)
+    let right = cameraSwitchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 16)
+    let width = cameraSwitchButton.widthAnchor.constraint(equalToConstant: 44)
+    let height = cameraSwitchButton.heightAnchor.constraint(equalToConstant: 44)
+    
+    NSLayoutConstraint.activate([top, right, width, height])
   }
   
   private func setUpCaptureButton() {
@@ -155,6 +179,10 @@ public class CaptureViewController: UIViewController, VideoPreviewLayerProvider 
     }
   }
   
+  @objc private func handleCameraSwitchButton(_: UIButton) {
+    toggleCamera()
+  }
+  
   //MARK: Gestures
   
   @objc private func handleViewTap(_ tap: UITapGestureRecognizer) {
@@ -181,9 +209,7 @@ public class CaptureViewController: UIViewController, VideoPreviewLayerProvider 
   }
   
   @objc private func handleViewDoubleTap(_ tap: UITapGestureRecognizer) {
-    captureManager.toggleCamera() { (error) -> Void in
-      print("Woops, got error: \(error)")
-    }
+    toggleCamera()
   }
 
   //MARK: VideoPreviewLayerProvider
@@ -193,6 +219,12 @@ public class CaptureViewController: UIViewController, VideoPreviewLayerProvider 
   }
   
   //MARK: Helpers
+  
+  private func toggleCamera() {
+    captureManager.toggleCamera() { (error) -> Void in
+      print("Woops, got error: \(error)")
+    }
+  }
   
   private func didChangeInputsOrOutputs() {
     let wasRunning = captureManager.isRunning

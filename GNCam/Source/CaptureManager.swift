@@ -511,7 +511,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    */
   private func addVideoDataOutput() throws {
     videoDataOutput = AVCaptureVideoDataOutput()
-    videoDataOutput?.videoSettings = [kCVPixelBufferPixelFormatTypeKey: UInt(kCVPixelFormatType_32BGRA)]
+    videoDataOutput?.videoSettings = [String(kCVPixelBufferPixelFormatTypeKey): UInt(kCVPixelFormatType_32BGRA)]
     videoDataOutput?.setSampleBufferDelegate(self, queue: framesQueue)
     
     if (!captureSession.canAddOutput(videoDataOutput)) {
