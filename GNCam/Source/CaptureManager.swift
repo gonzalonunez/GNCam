@@ -18,7 +18,7 @@ public protocol VideoDataOutputDelegate: class {
    Called when the `CaptureManager` outputs a `CMSampleBuffer`.
    - Important: This is **NOT** called on the main thread, but instead on `CaptureManager.kFramesQueue`.
    */
-  func captureManagerDidOutput(sampleBuffer: CMSampleBuffer)
+  func captureManagerDidOutput(_ sampleBuffer: CMSampleBuffer)
 }
 
 /// Input types for the `AVCaptureSession` of a `CaptureManager`
@@ -35,45 +35,45 @@ public enum CaptureSessionOutput {
 
 /// Error types for `CaptureManager`
 public enum CaptureManagerError: Error {
-  case InvalidSessionPreset
-  case InvalidMediaType
-  case InvalidCaptureInput
-  case InvalidCaptureOutput
-  case SessionNotSetUp
-  case MissingOutputConnection
-  case MissingVideoDevice
-  case MissingPreviewLayerProvider
-  case CameraToggleFailed
-  case FocusNotSupported
-  case ExposureNotSupported
-  case FlashNotAvailable
-  case FlashModeNotSupported
-  case TorchNotAvailable
-  case TorchModeNotSupported
+  case invalidSessionPreset
+  case invalidMediaType
+  case invalidCaptureInput
+  case invalidCaptureOutput
+  case sessionNotSetUp
+  case missingOutputConnection
+  case missingVideoDevice
+  case missingPreviewLayerProvider
+  case cameraToggleFailed
+  case focusNotSupported
+  case exposureNotSupported
+  case flashNotAvailable
+  case flashModeNotSupported
+  case torchNotAvailable
+  case torchModeNotSupported
 }
 
 /// Error types for `CaptureManager` related to `AVCaptureStillImageOutput`
 public enum StillImageError: Error {
-  case NoData
-  case NoImage
+  case noData
+  case noImage
 }
 
-public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
   
-  public static let sharedManager = CaptureManager()
+  static let sharedManager = CaptureManager()
   
   public typealias ErrorCompletionHandler = (Error) -> Void
   public typealias ImageCompletionHandler = (UIImage) -> Void
   public typealias ImageErrorCompletionHandler = (UIImage?, Error?) -> Void
   
-  private static let kFramesQueue = "com.ZenunSoftware.GNCam.FramesQueue"
-  private static let kSessionQueue = "com.ZenunSoftware.GNCam.SessionQueue"
+  fileprivate static let kFramesQueue = "com.ZenunSoftware.GNCam.FramesQueue"
+  fileprivate static let kSessionQueue = "com.ZenunSoftware.GNCam.SessionQueue"
   
-  private let framesQueue: DispatchQueue
-  private let sessionQueue: DispatchQueue
+  fileprivate let framesQueue: DispatchQueue
+  fileprivate let sessionQueue: DispatchQueue
   
-  private let captureSession: AVCaptureSession
-  private(set) var didSetUp = false
+  fileprivate let captureSession: AVCaptureSession
+  fileprivate(set) var didSetUp = false
   
   public var isRunning: Bool {
     return captureSession.isRunning
@@ -83,18 +83,18 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
     return captureSession.sessionPreset
   }
   
-  private var audioDevice: AVCaptureDevice?
-  private var videoDevice: AVCaptureDevice?
-  private(set) var videoDevicePosition = AVCaptureDevicePosition.back
+  fileprivate var audioDevice: AVCaptureDevice?
+  fileprivate var videoDevice: AVCaptureDevice?
+  fileprivate(set) var videoDevicePosition = AVCaptureDevicePosition.back
   
-  private var videoInput: AVCaptureDeviceInput?
-  private var audioInput: AVCaptureDeviceInput?
+  fileprivate var videoInput: AVCaptureDeviceInput?
+  fileprivate var audioInput: AVCaptureDeviceInput?
   
-  private var stillImageOutput: AVCaptureStillImageOutput?
-  private var videoDataOutput: AVCaptureVideoDataOutput?
+  fileprivate var stillImageOutput: AVCaptureStillImageOutput?
+  fileprivate var videoDataOutput: AVCaptureVideoDataOutput?
   
   public weak var dataOutputDelegate: VideoDataOutputDelegate?
-  private(set) weak var previewLayerProvider: VideoPreviewLayerProvider?
+  fileprivate(set) weak var previewLayerProvider: VideoPreviewLayerProvider?
   
   public var desiredVideoOrientation: AVCaptureVideoOrientation {
     switch UIDevice.current.orientation {
@@ -134,10 +134,10 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    - Throws: `CaptureManagerError.InvalidSessionPreset` if `sessionPreset` is not valid.
    */
   public func setUp(sessionPreset: String,
-                    previewLayerProvider: VideoPreviewLayerProvider,
-                    inputs: [CaptureSessionInput],
-                    outputs: [CaptureSessionOutput],
-                    errorHandler:ErrorCompletionHandler)
+                  previewLayerProvider: VideoPreviewLayerProvider,
+                  inputs: [CaptureSessionInput],
+                  outputs: [CaptureSessionOutput],
+                  errorHandler:ErrorCompletionHandler)
   {
     func setUpCaptureSession() throws {
       try self.setSessionPreset(sessionPreset)
@@ -172,14 +172,14 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   //MARK: I/O
   
   /// Add the corresponding `AVCaptureInput` for each `CaptureSessionInput` in `inputs`.
-  private func addInputs(_ inputs: [CaptureSessionInput]) throws {
+  fileprivate func addInputs(_ inputs: [CaptureSessionInput]) throws {
     for input in inputs {
       try addInput(input)
     }
   }
   
   /// Add the corresponding `AVCaptureInput` for `input`.
-  private func addInput(_ input: CaptureSessionInput) throws {
+  fileprivate func addInput(_ input: CaptureSessionInput) throws {
     switch input {
     case .video:
       try addVideoInput()
@@ -190,7 +190,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   }
   
   /// Remove the corresponding `AVCaptureInput` for `input`.
-  private func removeInput(_ input: CaptureSessionInput) {
+  fileprivate func removeInput(_ input: CaptureSessionInput) {
     switch input {
     case .video:
       captureSession.removeInput(videoInput)
@@ -201,7 +201,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   }
   
   /// Remove all inputs from `captureSession`
-  private func removeAllInputs() {
+  fileprivate func removeAllInputs() {
     if let inputs = captureSession.inputs as? [AVCaptureInput] {
       for input in inputs {
         captureSession.removeInput(input)
@@ -210,14 +210,14 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   }
   
   /// Add the corresponding `AVCaptureOutput` for each `CaptureSessionInput` in `outputs`.
-  private func addOutputs(_ outputs: [CaptureSessionOutput]) throws {
+  fileprivate func addOutputs(_ outputs: [CaptureSessionOutput]) throws {
     for output in outputs {
       try addOutput(output)
     }
   }
   
   /// Add the corresponding `AVCaptureOutput` for `outputs`.
-  private func addOutput(_ output: CaptureSessionOutput) throws {
+  fileprivate func addOutput(_ output: CaptureSessionOutput) throws {
     switch output {
     case .stillImage:
       try addStillImageOutput()
@@ -227,7 +227,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   }
   
   /// Remove the corresponding `AVCaptureSessionOutput` for `output`.
-  public func removeOutput(_ output: CaptureSessionOutput) {
+  fileprivate func removeOutput(_ output: CaptureSessionOutput) {
     switch output {
     case .stillImage:
       captureSession.removeOutput(stillImageOutput)
@@ -237,7 +237,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   }
   
   /// Remove all outputs from `captureSession`
-  private func removeAllOutputs() {
+  fileprivate func removeAllOutputs() {
     if let outputs = captureSession.outputs as? [AVCaptureOutput] {
       for outputs in outputs {
         captureSession.removeOutput(outputs)
@@ -248,10 +248,10 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
   //MARK: Actions
   
   /// Start running the `AVCaptureSession`.
-  public func startRunning(errorHandler: ErrorCompletionHandler? = nil) {
+  public func startRunning(_ errorHandler: ErrorCompletionHandler? = nil) {
     sessionQueue.async {
       if (!self.didSetUp) {
-        errorHandler?(CaptureManagerError.SessionNotSetUp)
+        errorHandler?(CaptureManagerError.sessionNotSetUp)
         return
       }
       if (self.captureSession.isRunning) { return }
@@ -271,7 +271,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    Capture a still image.
    - parameter completion: A closure of type `(UIImage?, Error?) -> Void` that is called on the **main thread** upon successful capture of the image or the occurence of an error.
    */
-  public func captureStillImage(completion: ImageErrorCompletionHandler) {
+  public func captureStillImage(_ completion: ImageErrorCompletionHandler) {
     
     sessionQueue.async {
       
@@ -279,7 +279,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
         let connection = imageOutput.connection(withMediaType: AVMediaTypeVideo) else
       {
         DispatchQueue.main.async {
-          completion(nil, CaptureManagerError.MissingOutputConnection)
+          completion(nil, CaptureManagerError.missingOutputConnection)
         }
         return
       }
@@ -296,14 +296,14 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
         
         guard let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer) else {
           DispatchQueue.main.async {
-            completion(nil, StillImageError.NoData)
+            completion(nil, StillImageError.noData)
           }
           return
         }
         
         guard let image = UIImage(data: data) else {
           DispatchQueue.main.async {
-            completion(nil, StillImageError.NoImage)
+            completion(nil, StillImageError.noImage)
           }
           return
         }
@@ -335,13 +335,13 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    Toggles the position of the camera if possible.
    - parameter errorHandler: A closure of type `Error -> Void` that is called on the **main thread** if no opposite device or input was found.
    */
-  public func toggleCamera(errorHandler: ErrorCompletionHandler) {
+  public func toggleCamera(_ errorHandler: ErrorCompletionHandler) {
     let position = videoDevicePosition.flipped()
     let device = try? desiredDevice(withMediaType: AVMediaTypeVideo, position: position)
     
     if (device == nil || device == videoDevice) {
       DispatchQueue.main.async {
-        errorHandler(CaptureManagerError.CameraToggleFailed)
+        errorHandler(CaptureManagerError.cameraToggleFailed)
       }
       return
     }
@@ -370,14 +370,14 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    */
   public func setFlash(_ mode: AVCaptureFlashMode, errorHandler: ErrorCompletionHandler? = nil) throws {
     guard let videoDevice = videoDevice else {
-      throw CaptureManagerError.MissingVideoDevice
+      throw CaptureManagerError.missingVideoDevice
     }
     
     sessionQueue.async {
       do {
         try videoDevice.lockForConfiguration()
-        if (!videoDevice.hasFlash || !videoDevice.isFlashAvailable) { throw CaptureManagerError.FlashNotAvailable }
-        if (!videoDevice.isFlashModeSupported(mode)) { throw CaptureManagerError.FlashModeNotSupported }
+        if (!videoDevice.hasFlash || !videoDevice.isFlashAvailable) { throw CaptureManagerError.flashNotAvailable }
+        if (!videoDevice.isFlashModeSupported(mode)) { throw CaptureManagerError.flashModeNotSupported }
         videoDevice.flashMode = mode
         videoDevice.unlockForConfiguration()
       }
@@ -397,14 +397,14 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    */
   public func setTorch(_ mode: AVCaptureTorchMode, errorHandler: ErrorCompletionHandler? = nil) throws {
     guard let videoDevice = videoDevice else {
-      throw CaptureManagerError.MissingVideoDevice
+      throw CaptureManagerError.missingVideoDevice
     }
     
     sessionQueue.async {
       do {
         try videoDevice.lockForConfiguration()
-        if (!videoDevice.hasTorch || videoDevice.isTorchAvailable) { throw CaptureManagerError.TorchNotAvailable }
-        if (!videoDevice.isTorchModeSupported(mode)) { throw CaptureManagerError.TorchModeNotSupported }
+        if (!videoDevice.hasTorch || videoDevice.isTorchAvailable) { throw CaptureManagerError.torchNotAvailable }
+        if (!videoDevice.isTorchModeSupported(mode)) { throw CaptureManagerError.torchModeNotSupported }
         videoDevice.torchMode = mode
         videoDevice.unlockForConfiguration()
       }
@@ -425,11 +425,11 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    */
   public func focusAndExposure(at pointInView: CGPoint, errorHandler: ErrorCompletionHandler? = nil) throws {
     guard let device = self.videoDevice else {
-      throw CaptureManagerError.MissingVideoDevice
+      throw CaptureManagerError.missingVideoDevice
     }
     
     guard let previewLayerProvider = previewLayerProvider else {
-      throw CaptureManagerError.MissingPreviewLayerProvider
+      throw CaptureManagerError.missingPreviewLayerProvider
     }
     
     let point = previewLayerProvider.previewLayer.pointForCaptureDevicePoint(ofInterest: pointInView)
@@ -464,7 +464,7 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
                             didOutputSampleBuffer sampleBuffer: CMSampleBuffer!,
                             from connection: AVCaptureConnection!)
   {
-    self.dataOutputDelegate?.captureManagerDidOutput(sampleBuffer: sampleBuffer)
+    self.dataOutputDelegate?.captureManagerDidOutput(sampleBuffer)
   }
   
   //MARK: Helpers
@@ -480,11 +480,11 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    Create `videoInput` and add it to `captureSession`.
    - Throws: `CaptureManagerError.InvalidCaptureInput` if the input cannot be added to `captureSession`.
    */
-  private func addVideoInput() throws {
+  fileprivate func addVideoInput() throws {
     videoInput = try AVCaptureDeviceInput(device: videoDevice)
     
     if (!captureSession.canAddInput(videoInput)) {
-      throw CaptureManagerError.InvalidCaptureInput
+      throw CaptureManagerError.invalidCaptureInput
     }
     
     captureSession.addInput(videoInput)
@@ -494,12 +494,12 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    Create `stillImageoutput` and add it to `captureSession`.
    - Throws: `CaptureManagerError.InvalidCaptureOutput` if the output cannot be added to `captureSession`.
    */
-  private func addStillImageOutput() throws {
+  fileprivate func addStillImageOutput() throws {
     stillImageOutput = AVCaptureStillImageOutput()
     stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
     
     if (!captureSession.canAddOutput(stillImageOutput)) {
-      throw CaptureManagerError.InvalidCaptureOutput
+      throw CaptureManagerError.invalidCaptureOutput
     }
     
     captureSession.addOutput(stillImageOutput)
@@ -509,13 +509,13 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    Create `videoDataOutput` and add it to `captureSession`.
    - Throws: `CaptureManagerError.InvalidCaptureOutput` if the output cannot be added to `captureSession`.
    */
-  private func addVideoDataOutput() throws {
+  fileprivate func addVideoDataOutput() throws {
     videoDataOutput = AVCaptureVideoDataOutput()
     videoDataOutput?.videoSettings = [String(kCVPixelBufferPixelFormatTypeKey): UInt(kCVPixelFormatType_32BGRA)]
     videoDataOutput?.setSampleBufferDelegate(self, queue: framesQueue)
     
     if (!captureSession.canAddOutput(videoDataOutput)) {
-      throw CaptureManagerError.InvalidCaptureOutput
+      throw CaptureManagerError.invalidCaptureOutput
     }
     
     captureSession.addOutput(videoDataOutput)
@@ -525,9 +525,9 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    Set the sessionPreset for the AVCaptureSession.
    - Throws: `CaptureManager.InvalidSessionPresent` if `sessionPreset` is not valid.
    */
-  private func setSessionPreset(_ preset: String) throws {
+  fileprivate func setSessionPreset(_ preset: String) throws {
     if !captureSession.canSetSessionPreset(preset) {
-      throw CaptureManagerError.InvalidSessionPreset
+      throw CaptureManagerError.invalidSessionPreset
     }
     
     captureSession.sessionPreset = preset
@@ -541,9 +541,9 @@ public class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
    - Throws: `CaptureManagerError.InvalidMediaType` if `type` is not a valid media type.
    - Returns: `AVCaptureDevice?`
    */
-  private func desiredDevice(withMediaType type: String, position: AVCaptureDevicePosition? = nil) throws -> AVCaptureDevice {
+  fileprivate func desiredDevice(withMediaType type: String, position: AVCaptureDevicePosition? = nil) throws -> AVCaptureDevice {
     guard let devices = AVCaptureDevice.devices(withMediaType: type) as? [AVCaptureDevice] else {
-      throw CaptureManagerError.InvalidMediaType
+      throw CaptureManagerError.invalidMediaType
     }
     
     return devices.filter{$0.position == position ?? videoDevicePosition}.first ?? AVCaptureDevice.defaultDevice(withMediaType: type)

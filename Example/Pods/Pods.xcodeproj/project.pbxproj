@@ -7,21 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07AAC1CEFDC78C6D8E9ECA985981E8F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		120475395508D3F7899F5E6E56DA178B /* Pods-GNCam_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C06F1CA5222ED44578643D7CD9B88360 /* Pods-GNCam_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3EA43F1D4C235B34C332D318D615D5CF /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8028A7F8D27E59F7ED72E79D3E40A5E7 /* CaptureViewController.swift */; };
 		5209B563CAD8CDC42CAEE961058A0389 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		557F5DB74C26A215A20201FAA275C872 /* GNCam-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 57DC8BC44CBF4C9A0D3DA548660CABA7 /* GNCam-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		52E5D5DA047DB4F9AFCBE4B2231B8BAD /* GNCam-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 57DC8BC44CBF4C9A0D3DA548660CABA7 /* GNCam-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		76209EB4BF6A823C08B594DDE9ED49F9 /* FocusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348D51EFEE9770E8773C27BF8B31B53A /* FocusIndicatorView.swift */; };
+		931B53415C2DD5547C4E2F8295D70D70 /* GNCam-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C5481E5CC02E146F0E2693910FF58394 /* GNCam-dummy.m */; };
 		A4D4252CDD297E123A1D23D7C4EB6A9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		A55A1748F0ABE15D5B42FB646CD34454 /* Pods-GNCam_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F96568C04F88A98EC36B4281FFD3C70 /* Pods-GNCam_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AB87245E1D62343B0020A3ED /* FocusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB87245D1D62343B0020A3ED /* FocusIndicatorView.swift */; };
-		AB8724611D6A0AAA0020A3ED /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8724601D6A0AAA0020A3ED /* CaptureViewController.swift */; };
-		ABB069711D598F0A00190FBB /* CaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB069701D598F0A00190FBB /* CaptureManager.swift */; };
-		ABB0697A1D59A31400190FBB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB069721D598F8A00190FBB /* AVFoundation.framework */; };
-		ABB0697B1D59A31400190FBB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB069741D598F9A00190FBB /* CoreMedia.framework */; };
-		ABB0697F1D5ADF8300190FBB /* CapturePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB0697E1D5ADF8300190FBB /* CapturePreviewView.swift */; };
+		D1EE0FE498AFAEC9D6BB4AE98CF2D44A /* CaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3BCB05A8AFCC5DC5EBD82B1D107994 /* CaptureManager.swift */; };
 		D64F0F640A0813EE8BC284E5E6308DE6 /* Pods-GNCam_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5C63BD71CCB4FF4FA226B4B19AC995 /* Pods-GNCam_Example-dummy.m */; };
-		E1CB396AF3DB17051D168D91CDDEA6FB /* GNCam-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C5481E5CC02E146F0E2693910FF58394 /* GNCam-dummy.m */; };
+		E35355875BCEA9E677F572D598D880C3 /* CapturePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558E0C298235CB9AB7CE66C8580429E5 /* CapturePreviewView.swift */; };
 		E501DEAE8FE6E68BDBFC694408B0A64A /* Pods-GNCam_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1549672BADEF4E57B39BC1146E278A62 /* Pods-GNCam_Tests-dummy.m */; };
-		E8E54113CD405554F96D5AD128EDE67F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +27,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4D67FCD5967879D2A2F3A171A415DB25;
+			remoteGlobalIDString = 669BD721734AF76E0532017DCCEE0171;
 			remoteInfo = GNCam;
 		};
 /* End PBXContainerItemProxy section */
@@ -42,29 +40,24 @@
 		2DA9D9927F75F1748A9C51349CAE6903 /* Pods-GNCam_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-GNCam_Tests.modulemap"; sourceTree = "<group>"; };
 		2DB491FD319A60AA2A8C85BC80ADC90A /* GNCam.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GNCam.xcconfig; sourceTree = "<group>"; };
 		34782E11F4222993AB79DF698B5163BA /* Pods-GNCam_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GNCam_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		348D51EFEE9770E8773C27BF8B31B53A /* FocusIndicatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FocusIndicatorView.swift; sourceTree = "<group>"; };
 		3F7AEDF1360CAE415667CB120F147CA4 /* GNCam-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GNCam-prefix.pch"; sourceTree = "<group>"; };
 		40B583D849C4A1BDD4FE5C163F18E189 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		489211899195F3FDF13DD20DFA2CD286 /* Pods-GNCam_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GNCam_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		497FE0045E05437466C16756313D94E6 /* Pods-GNCam_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GNCam_Example.release.xcconfig"; sourceTree = "<group>"; };
 		5342CC6A43009397643DDDC2BE26E1A3 /* Pods_GNCam_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GNCam_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		558E0C298235CB9AB7CE66C8580429E5 /* CapturePreviewView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CapturePreviewView.swift; sourceTree = "<group>"; };
 		57DC8BC44CBF4C9A0D3DA548660CABA7 /* GNCam-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GNCam-umbrella.h"; sourceTree = "<group>"; };
 		5FD825AD849656A6F8B962D9575E169F /* Pods-GNCam_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GNCam_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6357956CEFE3338072132E0B20EF086C /* Pods-GNCam_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-GNCam_Example.modulemap"; sourceTree = "<group>"; };
 		6CDB7D3E997A3F756B84EF4EF25D1968 /* Pods-GNCam_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GNCam_Example-resources.sh"; sourceTree = "<group>"; };
 		6F174A74782516813F2AA9B9F06AF697 /* Pods-GNCam_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GNCam_Tests-resources.sh"; sourceTree = "<group>"; };
+		8028A7F8D27E59F7ED72E79D3E40A5E7 /* CaptureViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		8F96568C04F88A98EC36B4281FFD3C70 /* Pods-GNCam_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GNCam_Tests-umbrella.h"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		97C547A71D9352EB9A87844F49495E7D /* Pods-GNCam_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GNCam_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A855A914AB45655B441FCF45FEF214B2 /* Pods_GNCam_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GNCam_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB87245D1D62343B0020A3ED /* FocusIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FocusIndicatorView.swift; path = Source/FocusIndicatorView.swift; sourceTree = "<group>"; };
-		AB87245F1D64C31F0020A3ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AB8724601D6A0AAA0020A3ED /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureViewController.swift; path = Source/CaptureViewController.swift; sourceTree = "<group>"; };
-		ABB069701D598F0A00190FBB /* CaptureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureManager.swift; path = Source/CaptureManager.swift; sourceTree = "<group>"; };
-		ABB069721D598F8A00190FBB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		ABB069741D598F9A00190FBB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
-		ABB069751D598F9A00190FBB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
-		ABB069761D598F9A00190FBB /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
-		ABB0697E1D5ADF8300190FBB /* CapturePreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CapturePreviewView.swift; path = Source/CapturePreviewView.swift; sourceTree = "<group>"; };
+		AB32A4231D6B5A12009A1E4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets/Assets.xcassets; sourceTree = "<group>"; };
 		AD715B1F858292EF8334A6DF2D6C9D33 /* Pods-GNCam_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GNCam_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		BAB352B0DC619ECBCF3EED0A7E570727 /* Pods-GNCam_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GNCam_Example-frameworks.sh"; sourceTree = "<group>"; };
 		C06F1CA5222ED44578643D7CD9B88360 /* Pods-GNCam_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GNCam_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -75,6 +68,7 @@
 		DD70DD9C8AB059E016BA8CA5BF70D324 /* Pods-GNCam_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GNCam_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		EC5C63BD71CCB4FF4FA226B4B19AC995 /* Pods-GNCam_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GNCam_Example-dummy.m"; sourceTree = "<group>"; };
 		F7392C90B6DEC01AD38805E4A90A0842 /* GNCam.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = GNCam.modulemap; sourceTree = "<group>"; };
+		FE3BCB05A8AFCC5DC5EBD82B1D107994 /* CaptureManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CaptureManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,13 +80,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8BDB5F4C4FB846645AAAD38C158F0E5E /* Frameworks */ = {
+		A8172D3FC5C5657172B7F5701FC4D626 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABB0697A1D59A31400190FBB /* AVFoundation.framework in Frameworks */,
-				ABB0697B1D59A31400190FBB /* CoreMedia.framework in Frameworks */,
-				E8E54113CD405554F96D5AD128EDE67F /* Foundation.framework in Frameworks */,
+				07AAC1CEFDC78C6D8E9ECA985981E8F4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +102,7 @@
 		285C92BA7743F4176096F25B371C3C35 /* GNCam */ = {
 			isa = PBXGroup;
 			children = (
-				7CD666A6BE3B80211C73CCA5745AECA7 /* GNCam */,
+				7C67484E3BC706DE1E7F26E1BEB68301 /* GNCam */,
 				CA4DAEA516DFB4E947006035CBEB5A2A /* Support Files */,
 			);
 			name = GNCam;
@@ -135,6 +127,17 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		5C6AC5310E8E782D4570704F53371B79 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FE3BCB05A8AFCC5DC5EBD82B1D107994 /* CaptureManager.swift */,
+				558E0C298235CB9AB7CE66C8580429E5 /* CapturePreviewView.swift */,
+				8028A7F8D27E59F7ED72E79D3E40A5E7 /* CaptureViewController.swift */,
+				348D51EFEE9770E8773C27BF8B31B53A /* FocusIndicatorView.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		6C62DF5AB03045D81668C295DADB3E64 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,10 +155,11 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		7CD666A6BE3B80211C73CCA5745AECA7 /* GNCam */ = {
+		7C67484E3BC706DE1E7F26E1BEB68301 /* GNCam */ = {
 			isa = PBXGroup;
 			children = (
-				ABB0696F1D598F0000190FBB /* Source */,
+				AB32A4221D6B5A02009A1E4F /* Assets */,
+				5C6AC5310E8E782D4570704F53371B79 /* Source */,
 			);
 			path = GNCam;
 			sourceTree = "<group>";
@@ -171,49 +175,17 @@
 			);
 			sourceTree = "<group>";
 		};
-		AB8724591D6233E90020A3ED /* Model */ = {
+		AB32A4221D6B5A02009A1E4F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				AB87245F1D64C31F0020A3ED /* Assets.xcassets */,
+				AB32A4231D6B5A12009A1E4F /* Assets.xcassets */,
 			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		AB87245B1D6233F30020A3ED /* View */ = {
-			isa = PBXGroup;
-			children = (
-				ABB0697E1D5ADF8300190FBB /* CapturePreviewView.swift */,
-				AB87245D1D62343B0020A3ED /* FocusIndicatorView.swift */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		AB87245C1D6233F70020A3ED /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				ABB069701D598F0A00190FBB /* CaptureManager.swift */,
-				AB8724601D6A0AAA0020A3ED /* CaptureViewController.swift */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
-		ABB0696F1D598F0000190FBB /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				AB8724591D6233E90020A3ED /* Model */,
-				AB87245B1D6233F30020A3ED /* View */,
-				AB87245C1D6233F70020A3ED /* Controller */,
-			);
-			name = Source;
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ABB069741D598F9A00190FBB /* CoreMedia.framework */,
-				ABB069751D598F9A00190FBB /* CoreVideo.framework */,
-				ABB069761D598F9A00190FBB /* ImageIO.framework */,
-				ABB069721D598F8A00190FBB /* AVFoundation.framework */,
 				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
 			);
 			name = Frameworks;
@@ -272,19 +244,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		1FEA3FB8BE0F44A2C893274AB7969BFB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52E5D5DA047DB4F9AFCBE4B2231B8BAD /* GNCam-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B30A4E1FF491EE7BDF2C58232F96B5A2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A55A1748F0ABE15D5B42FB646CD34454 /* Pods-GNCam_Tests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D7D69318E1B6DFD063D35663E6BC81F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				557F5DB74C26A215A20201FAA275C872 /* GNCam-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,13 +289,13 @@
 			productReference = A855A914AB45655B441FCF45FEF214B2 /* Pods_GNCam_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		4D67FCD5967879D2A2F3A171A415DB25 /* GNCam */ = {
+		669BD721734AF76E0532017DCCEE0171 /* GNCam */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6B0D53CBB8F5FA3CBE2E1F24245B9F3D /* Build configuration list for PBXNativeTarget "GNCam" */;
+			buildConfigurationList = 0185033E34DD098F19A1BD1B77A2B14C /* Build configuration list for PBXNativeTarget "GNCam" */;
 			buildPhases = (
-				E1125E631DAFCBFB4AE7901B19CE4E07 /* Sources */,
-				8BDB5F4C4FB846645AAAD38C158F0E5E /* Frameworks */,
-				D7D69318E1B6DFD063D35663E6BC81F4 /* Headers */,
+				5084CA1A60091EBED8E647256A851188 /* Sources */,
+				A8172D3FC5C5657172B7F5701FC4D626 /* Frameworks */,
+				1FEA3FB8BE0F44A2C893274AB7969BFB /* Headers */,
 			);
 			buildRules = (
 			);
@@ -363,10 +335,7 @@
 					183125578C14E9D8A777A1697BB86B6F = {
 						LastSwiftMigration = 0800;
 					};
-					4D67FCD5967879D2A2F3A171A415DB25 = {
-						LastSwiftMigration = 0800;
-					};
-					F2D53362C40289A5DDE4A9122C165BB9 = {
+					669BD721734AF76E0532017DCCEE0171 = {
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -383,7 +352,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4D67FCD5967879D2A2F3A171A415DB25 /* GNCam */,
+				669BD721734AF76E0532017DCCEE0171 /* GNCam */,
 				183125578C14E9D8A777A1697BB86B6F /* Pods-GNCam_Example */,
 				F2D53362C40289A5DDE4A9122C165BB9 /* Pods-GNCam_Tests */,
 			);
@@ -407,15 +376,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1125E631DAFCBFB4AE7901B19CE4E07 /* Sources */ = {
+		5084CA1A60091EBED8E647256A851188 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABB0697F1D5ADF8300190FBB /* CapturePreviewView.swift in Sources */,
-				ABB069711D598F0A00190FBB /* CaptureManager.swift in Sources */,
-				E1CB396AF3DB17051D168D91CDDEA6FB /* GNCam-dummy.m in Sources */,
-				AB87245E1D62343B0020A3ED /* FocusIndicatorView.swift in Sources */,
-				AB8724611D6A0AAA0020A3ED /* CaptureViewController.swift in Sources */,
+				D1EE0FE498AFAEC9D6BB4AE98CF2D44A /* CaptureManager.swift in Sources */,
+				E35355875BCEA9E677F572D598D880C3 /* CapturePreviewView.swift in Sources */,
+				3EA43F1D4C235B34C332D318D615D5CF /* CaptureViewController.swift in Sources */,
+				76209EB4BF6A823C08B594DDE9ED49F9 /* FocusIndicatorView.swift in Sources */,
+				931B53415C2DD5547C4E2F8295D70D70 /* GNCam-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,251 +394,13 @@
 		37BEEDFC2F82B9D5A0AAF4193CB31AFF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GNCam;
-			target = 4D67FCD5967879D2A2F3A171A415DB25 /* GNCam */;
+			target = 669BD721734AF76E0532017DCCEE0171 /* GNCam */;
 			targetProxy = 58EC18401E986B3EB03C57F7F103C9B1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0ACDCBCB0B6796575F46FFA2F5410C6B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		1DD4EF8BE753639E0C45C1CCAE308C2C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2DB491FD319A60AA2A8C85BC80ADC90A /* GNCam.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/GNCam/GNCam-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GNCam/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GNCam/GNCam.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = GNCam;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		472DF5A84897EE883DC8BB9A782F6584 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 497FE0045E05437466C16756313D94E6 /* Pods-GNCam_Example.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GNCam_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GNCam_Example/Pods-GNCam_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_GNCam_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		6B563F811607402004B0261F612DE7C1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97C547A71D9352EB9A87844F49495E7D /* Pods-GNCam_Tests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GNCam_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GNCam_Tests/Pods-GNCam_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_GNCam_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		70FA1D0C181ED4ABBC5746B975FA1563 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2DB491FD319A60AA2A8C85BC80ADC90A /* GNCam.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/GNCam/GNCam-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GNCam/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GNCam/GNCam.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = GNCam;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		B2CF1A06F115EAB15D34833C9602E51D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34782E11F4222993AB79DF698B5163BA /* Pods-GNCam_Tests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GNCam_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GNCam_Tests/Pods-GNCam_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_GNCam_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		CD06AD33FD81F6B643FB36D5E806470A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00FE56476B6F54A18669D7A675B922BC /* Pods-GNCam_Example.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GNCam_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GNCam_Example/Pods-GNCam_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_GNCam_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D3E3D092A3FF7311A98E44BBA36FFD12 /* Debug */ = {
+		034014829C1E4434983CF3A690C12017 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -704,21 +435,264 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
+		19BCD4C4DEEF7CA0D7C857874AB84DA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00FE56476B6F54A18669D7A675B922BC /* Pods-GNCam_Example.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-GNCam_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GNCam_Example/Pods-GNCam_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GNCam_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3939F90193245BCF6F6A4A2CE31F9FFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34782E11F4222993AB79DF698B5163BA /* Pods-GNCam_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-GNCam_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GNCam_Tests/Pods-GNCam_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GNCam_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8E836B296E5EFAAE7E187B35DC8447F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DB491FD319A60AA2A8C85BC80ADC90A /* GNCam.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/GNCam/GNCam-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GNCam/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GNCam/GNCam.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = GNCam;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A235533B4A90546D2818915F45B4DD94 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 497FE0045E05437466C16756313D94E6 /* Pods-GNCam_Example.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-GNCam_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GNCam_Example/Pods-GNCam_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GNCam_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B288AE65D7E76EA10AF888586480E4F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97C547A71D9352EB9A87844F49495E7D /* Pods-GNCam_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-GNCam_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GNCam_Tests/Pods-GNCam_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GNCam_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C7E474A03CAE21F1CB6046E7344C59BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED7B6B3F45405E9ECB133C0616B478F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DB491FD319A60AA2A8C85BC80ADC90A /* GNCam.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/GNCam/GNCam-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GNCam/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GNCam/GNCam.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = GNCam;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0185033E34DD098F19A1BD1B77A2B14C /* Build configuration list for PBXNativeTarget "GNCam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED7B6B3F45405E9ECB133C0616B478F4 /* Debug */,
+				8E836B296E5EFAAE7E187B35DC8447F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		05C6ED8310371F2297CCDD4270EFAAE8 /* Build configuration list for PBXNativeTarget "Pods-GNCam_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD06AD33FD81F6B643FB36D5E806470A /* Debug */,
-				472DF5A84897EE883DC8BB9A782F6584 /* Release */,
+				19BCD4C4DEEF7CA0D7C857874AB84DA8 /* Debug */,
+				A235533B4A90546D2818915F45B4DD94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -726,17 +700,8 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D3E3D092A3FF7311A98E44BBA36FFD12 /* Debug */,
-				0ACDCBCB0B6796575F46FFA2F5410C6B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6B0D53CBB8F5FA3CBE2E1F24245B9F3D /* Build configuration list for PBXNativeTarget "GNCam" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1DD4EF8BE753639E0C45C1CCAE308C2C /* Debug */,
-				70FA1D0C181ED4ABBC5746B975FA1563 /* Release */,
+				034014829C1E4434983CF3A690C12017 /* Debug */,
+				C7E474A03CAE21F1CB6046E7344C59BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -744,8 +709,8 @@
 		D0E9B52E1504BCAA7E4ADBB78198858D /* Build configuration list for PBXNativeTarget "Pods-GNCam_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B2CF1A06F115EAB15D34833C9602E51D /* Debug */,
-				6B563F811607402004B0261F612DE7C1 /* Release */,
+				3939F90193245BCF6F6A4A2CE31F9FFB /* Debug */,
+				B288AE65D7E76EA10AF888586480E4F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

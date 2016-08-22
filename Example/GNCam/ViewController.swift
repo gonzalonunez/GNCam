@@ -37,8 +37,8 @@ class ViewController: UIViewController, CaptureViewControllerDelegate {
     let maxDim = max(view.bounds.height, view.bounds.width)
     let minDim = min(view.bounds.height, view.bounds.width)
     
-    imageViewHeightConstraint.constant = (captureVC.captureManager.desiredVideoOrientation == .portrait ? maxDim : minDim) * 0.4
-    imageViewWidthConstraint.constant = (captureVC.captureManager.desiredVideoOrientation == .portrait ? minDim : maxDim) * 0.4
+    imageViewHeightConstraint.constant = (captureVC.captureManager.desiredVideoOrientation == .portrait ? maxDim : minDim) * 0.7
+    imageViewWidthConstraint.constant = (captureVC.captureManager.desiredVideoOrientation == .portrait ? minDim : maxDim) * 0.7
     view.layoutIfNeeded()
   }
   

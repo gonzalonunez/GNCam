@@ -9,9 +9,9 @@
 import UIKit
 import AVFoundation
 
-public class CapturePreviewView: UIView {
+open class CapturePreviewView: UIView {
   
-  override public class var layerClass: AnyClass {
+  override open class var layerClass: AnyClass {
     return AVCaptureVideoPreviewLayer.self
   }
   
@@ -25,7 +25,7 @@ public class CapturePreviewView: UIView {
     setUp()
   }
   
-  private func setUp() {
+  fileprivate func setUp() {
     backgroundColor = .black
   }
   

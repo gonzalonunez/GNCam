@@ -13,49 +13,49 @@ public enum PopDirection {
 }
 
 @IBDesignable
-public class FocusIndicatorView: UIView {
+open class FocusIndicatorView: UIView {
   
-  private var circleView = UIView()
+  fileprivate var circleView = UIView()
   
   /// The padding in between the circular border and the view's bounds.
-  var circlePadding: CGFloat = 2 {
+  public var circlePadding: CGFloat = 2 {
     didSet {
       setNeedsDisplay()
     }
   }
   
   /// The line width used to draw the circular border.
-  var lineWidth: CGFloat = 1 {
+  public var lineWidth: CGFloat = 1 {
     didSet {
       setNeedsDisplay()
     }
   }
   
   /// The `backgroundColor` of `circleView`
-  var fillColor: UIColor = UIColor.white.withAlphaComponent(0.7) {
+  public var fillColor: UIColor = UIColor.white.withAlphaComponent(0.7) {
     didSet {
       setNeedsDisplay()
     }
   }
   
   /// The `borderColor` of the `layer` of `circleView`
-  var strokeColor: UIColor = UIColor.white.withAlphaComponent(0.7) {
+  public var strokeColor: UIColor = UIColor.white.withAlphaComponent(0.7) {
     didSet {
       setNeedsDisplay()
     }
   }
   
-  public override init(frame: CGRect) {
+  override public init(frame: CGRect) {
     super.init(frame: frame)
     setUpCircle()
   }
   
-  public required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setUpCircle()
   }
   
-  public override func draw(_ rect: CGRect) {
+  override open func draw(_ rect: CGRect) {
     super.draw(rect)
     guard let ctx = UIGraphicsGetCurrentContext() else { return }
     
@@ -63,12 +63,12 @@ public class FocusIndicatorView: UIView {
     ctx.setStrokeColor(strokeColor.cgColor)
     
     let center = CGPoint(x: rect.midX, y: rect.midY)
-    ctx.addCircle(center: center, radius: radius(in: rect))
+    ctx.addCircle(center, radius: radius(in: rect))
     
     ctx.strokePath()
   }
   
-  private func setUpCircle() {
+  fileprivate func setUpCircle() {
     circleView.backgroundColor = fillColor
     circleView.layer.cornerRadius = (bounds.width * 0.9)/2
     
@@ -129,14 +129,14 @@ public class FocusIndicatorView: UIView {
     }
   }
   
-  public func popUpDown(completion: ((Bool) -> Void)? = nil) {
+  public func popUpDown(_ completion: ((Bool) -> Void)? = nil) {
     pop(.up) { _ -> Void in
       self.pop(.down, completion: completion)
     }
   }
   
   /// The calculated radius for `rect`. Takes into account `circlePadding`.
-  private func radius(in rect: CGRect) -> CGFloat {
+  fileprivate func radius(in rect: CGRect) -> CGFloat {
     return rect.width/2 - circlePadding
   }
 
@@ -145,7 +145,7 @@ public class FocusIndicatorView: UIView {
 
 private extension CGContext {
   
-  func addCircle(center: CGPoint, radius: CGFloat) {
+  func addCircle(_ center: CGPoint, radius: CGFloat) {
     return addArc(center: center, radius: radius, startAngle: CGFloat(0), endAngle: CGFloat(2*M_PI), clockwise: false)
   }
   
@@ -153,7 +153,7 @@ private extension CGContext {
 
 private extension CGMutablePath {
   
-  func addCircle(center: CGPoint, radius: CGFloat) {
+  func addCircle(_ center: CGPoint, radius: CGFloat) {
     return addArc(center: center, radius: radius,startAngle: CGFloat(0), endAngle: CGFloat(2*M_PI), clockwise: false)
   }
   
