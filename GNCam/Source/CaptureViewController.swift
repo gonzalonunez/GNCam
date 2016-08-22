@@ -63,7 +63,7 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
     btn.layer.borderWidth = 2
     
     //FIXME: `switchCamera` is nil :(
-    let bundle = Bundle(for: CaptureViewController.self)
+    let bundle = Bundle(for: CaptureViewController.self)    
     let switchCamera = UIImage(named: "switchCamera", in: bundle, compatibleWith: nil)
         
     btn.setImage(switchCamera, for: .normal)

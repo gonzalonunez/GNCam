@@ -21,7 +21,7 @@
   "source_files": "GNCam/Source/**/*",
   "resource_bundles": {
     "GNCam": [
-      "GNCam/Assets/Assets.xcassets"
+      "GNCam/Assets/**/*"
     ]
   }
 }
