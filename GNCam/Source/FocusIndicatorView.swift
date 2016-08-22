@@ -63,7 +63,7 @@ open class FocusIndicatorView: UIView {
     ctx.setStrokeColor(strokeColor.cgColor)
     
     let center = CGPoint(x: rect.midX, y: rect.midY)
-    ctx.addCircle(center, radius: radius(in: rect))
+    ctx.addCircle(center: center, radius: radius(in: rect))
     
     ctx.strokePath()
   }
@@ -145,7 +145,7 @@ open class FocusIndicatorView: UIView {
 
 private extension CGContext {
   
-  func addCircle(_ center: CGPoint, radius: CGFloat) {
+  func addCircle(center: CGPoint, radius: CGFloat) {
     return addArc(center: center, radius: radius, startAngle: CGFloat(0), endAngle: CGFloat(2*M_PI), clockwise: false)
   }
   
@@ -153,7 +153,7 @@ private extension CGContext {
 
 private extension CGMutablePath {
   
-  func addCircle(_ center: CGPoint, radius: CGFloat) {
+  func addCircle(center: CGPoint, radius: CGFloat) {
     return addArc(center: center, radius: radius,startAngle: CGFloat(0), endAngle: CGFloat(2*M_PI), clockwise: false)
   }
   
