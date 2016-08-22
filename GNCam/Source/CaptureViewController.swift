@@ -47,8 +47,7 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
     btn.layer.borderWidth = 2
     
     //FIXME: `close` is nil :(
-    let type = type(of: self)
-    let bundle = Bundle(for: type)
+    let bundle = Bundle(for: CaptureViewController.self)
     let close = UIImage(named: "close", in: bundle, compatibleWith: nil)
     
     btn.setImage(close, for: .normal)
@@ -64,8 +63,7 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
     btn.layer.borderWidth = 2
     
     //FIXME: `switchCamera` is nil :(
-    let type = type(of: self)
-    let bundle = Bundle(for: type)
+    let bundle = Bundle(for: CaptureViewController.self)
     let switchCamera = UIImage(named: "switchCamera", in: bundle, compatibleWith: nil)
         
     btn.setImage(switchCamera, for: .normal)
@@ -144,6 +142,7 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   }
   
   fileprivate func setUpCloseButton() {
+    closeButton.isHidden = !dismissable
     closeButton.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(closeButton)
     
@@ -201,7 +200,7 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   //MARK: Actions
   
   @objc fileprivate func handleCloseButton(_: UIButton) {
-    
+    dismiss(animated: true, completion: nil)
   }
   
   @objc fileprivate func handleCameraSwitchButton(_: UIButton) {

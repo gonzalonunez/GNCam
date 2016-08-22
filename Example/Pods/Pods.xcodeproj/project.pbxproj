@@ -57,7 +57,7 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		97C547A71D9352EB9A87844F49495E7D /* Pods-GNCam_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GNCam_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A855A914AB45655B441FCF45FEF214B2 /* Pods_GNCam_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GNCam_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB32A4231D6B5A12009A1E4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets/Assets.xcassets; sourceTree = "<group>"; };
+		AB32A4251D6B6094009A1E4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets/Assets.xcassets; sourceTree = "<group>"; };
 		AD715B1F858292EF8334A6DF2D6C9D33 /* Pods-GNCam_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GNCam_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		BAB352B0DC619ECBCF3EED0A7E570727 /* Pods-GNCam_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GNCam_Example-frameworks.sh"; sourceTree = "<group>"; };
 		C06F1CA5222ED44578643D7CD9B88360 /* Pods-GNCam_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GNCam_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 		7C67484E3BC706DE1E7F26E1BEB68301 /* GNCam */ = {
 			isa = PBXGroup;
 			children = (
-				AB32A4221D6B5A02009A1E4F /* Assets */,
+				AB32A4241D6B6085009A1E4F /* Assets */,
 				5C6AC5310E8E782D4570704F53371B79 /* Source */,
 			);
 			path = GNCam;
@@ -175,10 +175,10 @@
 			);
 			sourceTree = "<group>";
 		};
-		AB32A4221D6B5A02009A1E4F /* Assets */ = {
+		AB32A4241D6B6085009A1E4F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				AB32A4231D6B5A12009A1E4F /* Assets.xcassets */,
+				AB32A4251D6B6094009A1E4F /* Assets.xcassets */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
