@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'GNCam'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of GNCam.'
+  s.summary          = 'A Swift 3 library that uses AVFoundation to interact with the camera on iOS.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-GNCam is a Swift library for interacting with the camera on iOS using AVFoundation.
+GNCam is a Swift 3 library that uses AVFoundation to interact with the camera on iOS.
                         DESC
 
   s.homepage         = 'https://github.com/gonzalonunez/GNCam'
@@ -34,6 +34,4 @@ GNCam is a Swift library for interacting with the camera on iOS using AVFoundati
 
   s.frameworks = 'UIKit', 'AVFoundation', 'CoreMedia'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
