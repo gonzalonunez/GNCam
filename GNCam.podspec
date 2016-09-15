@@ -30,10 +30,7 @@ GNCam is a Swift library for interacting with the camera on iOS using AVFoundati
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'GNCam/Source/**/*'
-  
-  s.resource_bundles = {
-    'GNCam' => ['GNCam/Assets/**/*']
-  }
+  s.resources = 'GNCam/Assets/**/*'
 
   s.frameworks = 'UIKit', 'AVFoundation', 'CoreMedia'
 

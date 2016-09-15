@@ -20,11 +20,7 @@
     "ios": "9.0"
   },
   "source_files": "GNCam/Source/**/*",
-  "resource_bundles": {
-    "GNCam": [
-      "GNCam/Assets/**/*"
-    ]
-  },
+  "resources": "GNCam/Assets/**/*",
   "frameworks": [
     "UIKit",
     "AVFoundation",

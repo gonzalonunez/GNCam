@@ -43,10 +43,6 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   fileprivate lazy var closeButton: UIButton = {
     let btn = UIButton(frame: CGRect.zero)
     
-    btn.layer.borderColor = UIColor.red.cgColor
-    btn.layer.borderWidth = 2
-    
-    //FIXME: `close` is nil :(
     let bundle = Bundle(for: CaptureViewController.self)
     let close = UIImage(named: "close", in: bundle, compatibleWith: nil)
     
@@ -59,11 +55,7 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   fileprivate lazy var cameraSwitchButton: UIButton = {
     let btn = UIButton(frame: CGRect.zero)
     
-    btn.layer.borderColor = UIColor.red.cgColor
-    btn.layer.borderWidth = 2
-    
-    //FIXME: `switchCamera` is nil :(
-    let bundle = Bundle(for: CaptureViewController.self)    
+    let bundle = Bundle(for: CaptureViewController.self)
     let switchCamera = UIImage(named: "switchCamera", in: bundle, compatibleWith: nil)
         
     btn.setImage(switchCamera, for: .normal)
