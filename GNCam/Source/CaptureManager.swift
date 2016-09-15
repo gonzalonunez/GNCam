@@ -134,28 +134,34 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
    - Throws: `CaptureManagerError.InvalidSessionPreset` if `sessionPreset` is not valid.
    */
   public func setUp(sessionPreset: String,
-                  previewLayerProvider: VideoPreviewLayerProvider,
+                  previewLayerProvider: VideoPreviewLayerProvider?,
                   inputs: [CaptureSessionInput],
                   outputs: [CaptureSessionOutput],
-                  errorHandler:ErrorCompletionHandler)
+                  errorHandler: @escaping ErrorCompletionHandler)
   {
     func setUpCaptureSession() throws {
+      captureSession.beginConfiguration()
+      
       try self.setSessionPreset(sessionPreset)
       self.videoDevice = try self.desiredDevice(withMediaType: AVMediaTypeVideo)
       
       self.removeAllInputs()
       try self.addInputs(inputs)
       
-      DispatchQueue.main.async {
-        self.previewLayerProvider = previewLayerProvider
-        previewLayerProvider.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        previewLayerProvider.previewLayer.session = self.captureSession
+      if let layerProvider = previewLayerProvider {
+        DispatchQueue.main.async {
+          self.previewLayerProvider = layerProvider
+          layerProvider.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+          layerProvider.previewLayer.session = self.captureSession
+        }
       }
       
       self.removeAllOutputs()
       try self.addOutputs(outputs)
       
       didSetUp = true
+      
+      captureSession.commitConfiguration()
     }
     
     sessionQueue.async {
@@ -271,7 +277,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
    Capture a still image.
    - parameter completion: A closure of type `(UIImage?, Error?) -> Void` that is called on the **main thread** upon successful capture of the image or the occurence of an error.
    */
-  public func captureStillImage(_ completion: ImageErrorCompletionHandler) {
+  public func captureStillImage(_ completion: @escaping ImageErrorCompletionHandler) {
     
     sessionQueue.async {
       
@@ -335,7 +341,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
    Toggles the position of the camera if possible.
    - parameter errorHandler: A closure of type `Error -> Void` that is called on the **main thread** if no opposite device or input was found.
    */
-  public func toggleCamera(_ errorHandler: ErrorCompletionHandler) {
+  public func toggleCamera(_ errorHandler: @escaping ErrorCompletionHandler) {
     let position = videoDevicePosition.flipped()
     let device = try? desiredDevice(withMediaType: AVMediaTypeVideo, position: position)
     

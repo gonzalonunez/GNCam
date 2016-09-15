@@ -18,15 +18,14 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+GNCam is a Swift library for interacting with the camera on iOS using AVFoundation.
+                        DESC
 
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/GNCam'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = 'https://github.com/gonzalonunez/GNCam'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'gonzalonunez' => 'gonzi@tcpmiami.com' }
-  s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/GNCam.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { 'gonzalonunez' => 'hello@gonzalonunez.me' }
+  s.source           = { :git => 'https://github.com/gonzalonunez/GNCam.git', :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/gonzalo__nunez'
 
   s.ios.deployment_target = '9.0'
 
@@ -36,7 +35,8 @@ TODO: Add long description of the pod here.
     'GNCam' => ['GNCam/Assets/**/*']
   }
 
+  s.frameworks = 'UIKit', 'AVFoundation', 'CoreMedia'
+
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

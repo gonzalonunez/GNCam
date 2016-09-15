@@ -2,19 +2,20 @@
   "name": "GNCam",
   "version": "0.1.0",
   "summary": "A short description of GNCam.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/GNCam",
+  "description": "GNCam is a Swift library for interacting with the camera on iOS using AVFoundation.",
+  "homepage": "https://github.com/gonzalonunez/GNCam",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "gonzalonunez": "gonzi@tcpmiami.com"
+    "gonzalonunez": "hello@gonzalonunez.me"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/GNCam.git",
+    "git": "https://github.com/gonzalonunez/GNCam.git",
     "tag": "0.1.0"
   },
+  "social_media_url": "https://twitter.com/gonzalo__nunez",
   "platforms": {
     "ios": "9.0"
   },
@@ -23,5 +24,10 @@
     "GNCam": [
       "GNCam/Assets/**/*"
     ]
-  }
+  },
+  "frameworks": [
+    "UIKit",
+    "AVFoundation",
+    "CoreMedia"
+  ]
 }
