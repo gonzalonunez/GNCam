@@ -134,7 +134,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
    - parameter outputs: A mask of options of type `CaptureSessionOutputs` indicating what outputs to add to the `AVCaptureSession`.
    - parameter errorHandler: A closure of type `(Error) -> Void`. Called on the **main thread** if anything performed inside of `sessionQueue` thread throws an error.
    
-   - Throws: `CaptureManagerError.InvalidSessionPreset` if `sessionPreset` is not valid.
+   - Throws: `CaptureManagerError.invalidSessionPreset` if `sessionPreset` is not valid.
    */
   public func setUp(sessionPreset: String,
                   previewLayerProvider: VideoPreviewLayerProvider?,
@@ -525,7 +525,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
   /**
    Create `videoInput` and add it to `captureSession`.
-   - Throws: `CaptureManagerError.InvalidCaptureInput` if the input cannot be added to `captureSession`.
+   - Throws: `CaptureManagerError.invalidCaptureInput` if the input cannot be added to `captureSession`.
    */
   fileprivate func addVideoInput() throws {
     videoInput = try AVCaptureDeviceInput(device: videoDevice)
@@ -534,7 +534,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
   /**
    Create `audioInput` and add it to `captureSession`.
-   - Throws: `CaptureManagerError.InvalidCaptureInput` if the input cannot be added to `captureSession`.
+   - Throws: `CaptureManagerError.invalidCaptureInput` if the input cannot be added to `captureSession`.
   */
   fileprivate func addAudioInput() throws {
     let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio)
@@ -544,7 +544,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
   /**
    Add `input` to `captureSession`.
-   - Throws: `CaptureManagerError.InvalidCaptureInput` if the input cannot be added to `captureSession`.
+   - Throws: `CaptureManagerError.invalidCaptureInput` if the input cannot be added to `captureSession`.
    */
   fileprivate func addCaptureInput(_ input: AVCaptureInput) throws {
     if (!captureSession.canAddInput(input)) {
@@ -555,7 +555,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
   /**
    Create `stillImageoutput` and add it to `captureSession`.
-   - Throws: `CaptureManagerError.InvalidCaptureOutput` if the output cannot be added to `captureSession`.
+   - Throws: `CaptureManagerError.invalidCaptureOutput` if the output cannot be added to `captureSession`.
    */
   fileprivate func addStillImageOutput() throws {
     stillImageOutput = AVCaptureStillImageOutput()
@@ -565,7 +565,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
   /**
    Create `videoDataOutput` and add it to `captureSession`.
-   - Throws: `CaptureManagerError.InvalidCaptureOutput` if the output cannot be added to `captureSession`.
+   - Throws: `CaptureManagerError.invalidCaptureOutput` if the output cannot be added to `captureSession`.
    */
   fileprivate func addVideoDataOutput() throws {
     videoDataOutput = AVCaptureVideoDataOutput()
@@ -576,7 +576,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
   /**
    Create `movieFileOutput` and add it to `captureSession`.
-   - Throws: `CaptureManagerError.InvalidCaptureOutput` if the output cannot be added to `captureSession`.
+   - Throws: `CaptureManagerError.invalidCaptureOutput` if the output cannot be added to `captureSession`.
    */
   fileprivate func addMovieFileOutput() throws {
     movieFileOutput = AVCaptureMovieFileOutput()
@@ -585,7 +585,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
   /**
    Add `output` to `captureSession`.
-   - Throws: `CaptureManagerError.InvalidCaptureOutput` if the output cannot be added to `captureSession`.
+   - Throws: `CaptureManagerError.invalidCaptureOutput` if the output cannot be added to `captureSession`.
    */
   fileprivate func addCaptureOutput(_ output: AVCaptureOutput) throws {
     if (!captureSession.canAddOutput(output)) {
@@ -596,7 +596,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
   /**
    Set the sessionPreset for the AVCaptureSession.
-   - Throws: `CaptureManager.InvalidSessionPresent` if `sessionPreset` is not valid.
+   - Throws: `CaptureManager.invalidSessionPresent` if `sessionPreset` is not valid.
    */
   fileprivate func setSessionPreset(_ preset: String) throws {
     if !captureSession.canSetSessionPreset(preset) {
@@ -611,7 +611,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
    
    - parameter type: The media type, such as AVMediaTypeVideo, AVMediaTypeAudio, or AVMediaTypeMuxed.
    - parameter position: The `AVCaptureDevicePosition`. If nil, `videoDevicePosition` is used.
-   - Throws: `CaptureManagerError.InvalidMediaType` if `type` is not a valid media type.
+   - Throws: `CaptureManagerError.invalidMediaType` if `type` is not a valid media type.
    - Returns: `AVCaptureDevice?`
    */
   fileprivate func desiredDevice(withMediaType type: String, position: AVCaptureDevicePosition? = nil) throws -> AVCaptureDevice {
