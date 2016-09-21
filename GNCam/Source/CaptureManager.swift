@@ -190,7 +190,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     case .video:
       try addVideoInput()
     case .audio:
-      //TODO: Add audio input.
+      try addAudioInput()
       break
     }
   }
@@ -199,9 +199,13 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   fileprivate func removeInput(_ input: CaptureSessionInput) {
     switch input {
     case .video:
-      captureSession.removeInput(videoInput)
+      if let videoInput = videoInput {
+        captureSession.removeInput(videoInput)
+      }
     case .audio:
-      //TODO: Remove audio input.
+      if let audioInput = audioInput {
+        captureSession.removeInput(audioInput)
+      }
       break
     }
   }
@@ -494,6 +498,21 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     }
     
     captureSession.addInput(videoInput)
+  }
+  
+  /**
+   Create `audioInput` and add it to `captureSession`.
+   - Throws: `CaptureManagerError.InvalidCaptureInput` if the input cannot be added to `captureSession`.
+  */
+  fileprivate func addAudioInput() throws {
+    let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio)
+    audioInput = try AVCaptureDeviceInput(device: audioDevice)
+    
+    if (!captureSession.canAddInput(audioInput)) {
+      throw CaptureManagerError.invalidCaptureInput
+    }
+    
+    captureSession.addInput(audioInput)
   }
   
   /**
