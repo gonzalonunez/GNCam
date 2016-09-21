@@ -31,6 +31,7 @@ public enum CaptureSessionInput {
 public enum CaptureSessionOutput {
   case stillImage
   case videoData
+  case movieFile
 }
 
 /// Error types for `CaptureManager`
@@ -42,6 +43,7 @@ public enum CaptureManagerError: Error {
   case sessionNotSetUp
   case missingOutputConnection
   case missingVideoDevice
+  case missingMovieOutput
   case missingPreviewLayerProvider
   case cameraToggleFailed
   case focusNotSupported
@@ -92,6 +94,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
   fileprivate var stillImageOutput: AVCaptureStillImageOutput?
   fileprivate var videoDataOutput: AVCaptureVideoDataOutput?
+  fileprivate var movieFileOutput: AVCaptureMovieFileOutput?
   
   public weak var dataOutputDelegate: VideoDataOutputDelegate?
   fileprivate(set) weak var previewLayerProvider: VideoPreviewLayerProvider?
@@ -233,6 +236,8 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
       try addStillImageOutput()
     case .videoData:
       try addVideoDataOutput()
+    case .movieFile:
+      try addMovieFileOutput()
     }
   }
   
@@ -240,9 +245,17 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   fileprivate func removeOutput(_ output: CaptureSessionOutput) {
     switch output {
     case .stillImage:
-      captureSession.removeOutput(stillImageOutput)
+      if let stillImageOutput = stillImageOutput {
+        captureSession.removeOutput(stillImageOutput)
+      }
     case .videoData:
-      captureSession.removeOutput(videoDataOutput)
+      if let videoDataOutput = videoDataOutput {
+        captureSession.removeOutput(videoDataOutput)
+      }
+    case .movieFile:
+      if let movieFileOutput = movieFileOutput {
+        captureSession.removeOutput(movieFileOutput)
+      }
     }
   }
   
@@ -339,6 +352,30 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
       
     }
     
+  }
+  
+  /**
+   Start recording a video.
+   - parameter toOutputFileURL: The URL where the video is recorded to.
+   - parameter recordingDelegate: The `AVCaptureFileOutputRecordingDelegate` for `movieFileOutput`.
+   - Throws: `CaptureManagerError.missingMovieOutput` if `movieFileOutput` is nil.
+   */
+  public func startRecordingMovie(toOutputFileURL url: URL, recordingDelegate: AVCaptureFileOutputRecordingDelegate) throws {
+    guard let movieFileOutput = movieFileOutput else {
+      throw CaptureManagerError.missingMovieOutput
+    }
+    movieFileOutput.startRecording(toOutputFileURL: url, recordingDelegate: recordingDelegate)
+  }
+  
+  /**
+   Stop recording a video.
+   - Throws: `CaptureManagerError.missingMovieOutput` if `movieFileOutput` is nil.
+   */
+  public func stopRecordingMovie() throws {
+    guard let movieFileOutput = movieFileOutput else {
+      throw CaptureManagerError.missingMovieOutput
+    }
+    movieFileOutput.stopRecording()
   }
   
   /**
@@ -492,12 +529,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
    */
   fileprivate func addVideoInput() throws {
     videoInput = try AVCaptureDeviceInput(device: videoDevice)
-    
-    if (!captureSession.canAddInput(videoInput)) {
-      throw CaptureManagerError.invalidCaptureInput
-    }
-    
-    captureSession.addInput(videoInput)
+    try addCaptureInput(videoInput!)
   }
   
   /**
@@ -507,12 +539,18 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   fileprivate func addAudioInput() throws {
     let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio)
     audioInput = try AVCaptureDeviceInput(device: audioDevice)
-    
-    if (!captureSession.canAddInput(audioInput)) {
+    try addCaptureInput(audioInput!)
+  }
+  
+  /**
+   Add `input` to `captureSession`.
+   - Throws: `CaptureManagerError.InvalidCaptureInput` if the input cannot be added to `captureSession`.
+   */
+  fileprivate func addCaptureInput(_ input: AVCaptureInput) throws {
+    if (!captureSession.canAddInput(input)) {
       throw CaptureManagerError.invalidCaptureInput
     }
-    
-    captureSession.addInput(audioInput)
+    captureSession.addInput(input)
   }
   
   /**
@@ -522,12 +560,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   fileprivate func addStillImageOutput() throws {
     stillImageOutput = AVCaptureStillImageOutput()
     stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
-    
-    if (!captureSession.canAddOutput(stillImageOutput)) {
-      throw CaptureManagerError.invalidCaptureOutput
-    }
-    
-    captureSession.addOutput(stillImageOutput)
+    try addCaptureOutput(stillImageOutput!)
   }
   
   /**
@@ -538,12 +571,27 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     videoDataOutput = AVCaptureVideoDataOutput()
     videoDataOutput?.videoSettings = [String(kCVPixelBufferPixelFormatTypeKey): UInt(kCVPixelFormatType_32BGRA)]
     videoDataOutput?.setSampleBufferDelegate(self, queue: framesQueue)
-    
-    if (!captureSession.canAddOutput(videoDataOutput)) {
+    try addCaptureOutput(videoDataOutput!)
+  }
+  
+  /**
+   Create `movieFileOutput` and add it to `captureSession`.
+   - Throws: `CaptureManagerError.InvalidCaptureOutput` if the output cannot be added to `captureSession`.
+   */
+  fileprivate func addMovieFileOutput() throws {
+    movieFileOutput = AVCaptureMovieFileOutput()
+    try addCaptureOutput(movieFileOutput!)
+  }
+  
+  /**
+   Add `output` to `captureSession`.
+   - Throws: `CaptureManagerError.InvalidCaptureOutput` if the output cannot be added to `captureSession`.
+   */
+  fileprivate func addCaptureOutput(_ output: AVCaptureOutput) throws {
+    if (!captureSession.canAddOutput(output)) {
       throw CaptureManagerError.invalidCaptureOutput
     }
-    
-    captureSession.addOutput(videoDataOutput)
+    captureSession.addOutput(output)
   }
   
   /**
