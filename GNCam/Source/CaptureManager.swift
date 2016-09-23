@@ -71,7 +71,7 @@ public enum StillImageError: Error {
 
 open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
   
-  static let sharedManager = CaptureManager()
+  public static let sharedManager = CaptureManager()
   
   public typealias ErrorCompletionHandler = (Error) -> Void
   public typealias ImageCompletionHandler = (UIImage) -> Void
