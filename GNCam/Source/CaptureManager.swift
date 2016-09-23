@@ -25,6 +25,15 @@ public protocol VideoDataOutputDelegate: class {
 public enum CaptureSessionInput {
   case video
   case audio
+  
+  var mediaType: String {
+    switch self {
+    case .video:
+      return AVMediaTypeVideo
+    case .audio:
+      return AVMediaTypeAudio
+    }
+  }
 }
 
 /// Output types for the `AVCaptureSession` of a `CaptureManager`
@@ -108,6 +117,15 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     case .landscapeRight:
       return .landscapeLeft
     }
+  }
+  
+  /** Returns the `AVAuthorizationStatus` for the `mediaType` of `input`.
+   
+   - parameter input: The `CaptureSessionInput` to inspect the status of.
+  */
+  public func authorizationStatus(forInput input: CaptureSessionInput) -> AVAuthorizationStatus {
+    let mediaType = input.mediaType
+    return AVCaptureDevice.authorizationStatus(forMediaType: mediaType)
   }
   
   /// Determines whether or not images taken with front camera are mirrored. Default is `true`.
