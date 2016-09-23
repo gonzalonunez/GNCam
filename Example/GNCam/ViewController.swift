@@ -11,10 +11,7 @@ import UIKit
 
 class ViewController: UIViewController, CaptureViewControllerDelegate {
   
-  @IBOutlet weak var imageView: UIImageView!
-  
-  @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
-  @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
+  @IBOutlet weak private var imageView: UIImageView!
   
   private lazy var captureVC: CaptureViewController = {
     let vc = CaptureViewController(inputs: [.video], outputs: [.stillImage])
@@ -22,24 +19,9 @@ class ViewController: UIViewController, CaptureViewControllerDelegate {
     return vc
   }()
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    refreshImageViewDimensions()
-  }
-  
   override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
-    refreshImageViewDimensions()
     captureVC.captureManager.refreshOrientation()
-  }
-  
-  private func refreshImageViewDimensions() {
-    let maxDim = max(view.bounds.height, view.bounds.width)
-    let minDim = min(view.bounds.height, view.bounds.width)
-    
-    imageViewHeightConstraint.constant = (captureVC.captureManager.desiredVideoOrientation == .portrait ? maxDim : minDim) * 0.7
-    imageViewWidthConstraint.constant = (captureVC.captureManager.desiredVideoOrientation == .portrait ? minDim : maxDim) * 0.7
-    view.layoutIfNeeded()
   }
   
   //MARK: IBActions

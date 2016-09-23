@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,17 +23,17 @@
                                     <action selector="handleTakePictureButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cot-bA-bZG"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bcy-WG-InJ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bcy-WG-InJ">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="lrB-tL-z12"/>
-                                    <constraint firstAttribute="width" constant="240" id="mUm-OT-JZc"/>
+                                    <constraint firstAttribute="height" constant="250" id="lrB-tL-z12"/>
+                                    <constraint firstAttribute="width" constant="320" id="mUm-OT-JZc"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="eZ4-Lx-z0E" secondAttribute="bottom" constant="50" id="1tV-Ke-fPO"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="eZ4-Lx-z0E" secondAttribute="bottom" constant="16" id="1tV-Ke-fPO"/>
                             <constraint firstItem="eZ4-Lx-z0E" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="AM7-pe-hHV"/>
                             <constraint firstItem="bcy-WG-InJ" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="BV4-MP-mZ3"/>
                             <constraint firstItem="bcy-WG-InJ" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" constant="-20" id="Ebi-OW-1Qr"/>
@@ -41,8 +41,6 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="bcy-WG-InJ" id="mY0-OA-90b"/>
-                        <outlet property="imageViewHeightConstraint" destination="lrB-tL-z12" id="2lz-Zo-nzo"/>
-                        <outlet property="imageViewWidthConstraint" destination="mUm-OT-JZc" id="6W7-eb-Svl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

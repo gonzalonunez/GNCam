@@ -335,12 +335,8 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         let wantsFlipped = (self.videoDevicePosition == .front && self.mirrorsFrontCamera)
         
         if (wantsFlipped) {
-          if #available(iOS 10.0, *) {
-            flipped = image.withHorizontallyFlippedOrientation()
-          } else {
-            if let cgImage = image.cgImage {
-              flipped = UIImage(cgImage: cgImage, scale: image.scale, orientation: .leftMirrored)
-            }
+          if let cgImage = image.cgImage {
+            flipped = UIImage(cgImage: cgImage, scale: image.scale, orientation: .leftMirrored)
           }
         }
         
