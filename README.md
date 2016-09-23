@@ -29,7 +29,7 @@ Gonzalo Nuñez, hello@gonzalonunez.me
 
 GNCam is available under the MIT license. See the LICENSE file for more info.
 
-## Note
+## Notes
 
 As of right now, this is simply a direct Swift 3 port of existing code that I had – the original code is like 2+ years old. In the future, I plan on ditching the "CaptureManager" approach and going with a more protocol-oriented compositional approach. Along with that change, there will need to be a few more things before I can call this v1.0:
 
