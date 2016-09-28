@@ -96,7 +96,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
   fileprivate var audioDevice: AVCaptureDevice?
   fileprivate var videoDevice: AVCaptureDevice?
-  fileprivate(set) var videoDevicePosition = AVCaptureDevicePosition.back
+  public fileprivate(set) var videoDevicePosition = AVCaptureDevicePosition.back
   
   fileprivate var videoInput: AVCaptureDeviceInput?
   fileprivate var audioInput: AVCaptureDeviceInput?
