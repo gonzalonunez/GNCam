@@ -654,7 +654,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
    - Throws: `CaptureManagerError.invalidMediaType` if `type` is not a valid media type.
    - Returns: `AVCaptureDevice?`
    */
-  fileprivate func desiredDevice(withMediaType type: String, position: AVCaptureDevicePosition? = nil) throws -> AVCaptureDevice {
+  fileprivate func desiredDevice(withMediaType type: String, position: AVCaptureDevicePosition? = nil) throws -> AVCaptureDevice? {
     guard let devices = AVCaptureDevice.devices(withMediaType: type) as? [AVCaptureDevice] else {
       throw CaptureManagerError.invalidMediaType
     }
