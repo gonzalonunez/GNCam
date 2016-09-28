@@ -410,7 +410,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     let position = videoDevicePosition.flipped()
     let device = try? desiredDevice(withMediaType: AVMediaTypeVideo, position: position)
     
-    if (device == nil || device == videoDevice) {
+    if (device == nil || device! == videoDevice) {
       DispatchQueue.main.async {
         errorHandler(CaptureManagerError.cameraToggleFailed)
       }
@@ -422,7 +422,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         self.videoDevicePosition = position
         self.captureSession.beginConfiguration()
         self.removeInput(.video)
-        self.videoDevice = device
+        self.videoDevice = device!
         try self.addInput(.video)
         self.captureSession.commitConfiguration()
       } catch let error {
