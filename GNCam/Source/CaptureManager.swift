@@ -80,11 +80,11 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   fileprivate static let kFramesQueue = "com.ZenunSoftware.GNCam.FramesQueue"
   fileprivate static let kSessionQueue = "com.ZenunSoftware.GNCam.SessionQueue"
   
-  fileprivate let framesQueue: DispatchQueue
-  fileprivate let sessionQueue: DispatchQueue
+  public let framesQueue: DispatchQueue
+  public let sessionQueue: DispatchQueue
   
   fileprivate let captureSession: AVCaptureSession
-  fileprivate(set) var didSetUp = false
+  public fileprivate(set) var didSetUp = false
   
   public var isRunning: Bool {
     return captureSession.isRunning
@@ -117,6 +117,16 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     case .landscapeRight:
       return .landscapeLeft
     }
+  }
+  
+  /// The `AVCaptureFlashMode` of `videoDevice`
+  public var flashMode: AVCaptureFlashMode {
+    return videoDevice?.flashMode ?? .off
+  }
+  
+  /// The `AVCaptureTorchMode` of `videoDevice`
+  public var torchMode: AVCaptureTorchMode {
+    return videoDevice?.torchMode ?? .off
   }
   
   /** Returns the `AVAuthorizationStatus` for the `mediaType` of `input`.
@@ -452,6 +462,14 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   }
   
   /**
+   Toggles the `AVCaptureFlashMode` for `videoDevice`.
+   - Important: If the current `AVCaptureFlashMode` is set to `.auto`, this will set it to `.on`.
+  */
+  public func toggleFlash(errorHandler: ErrorCompletionHandler? = nil) throws {
+    return try setFlash(flashMode.flipped(), errorHandler: errorHandler)
+  }
+  
+  /**
    Sets the `AVCaptureTorchMode` for `videoDevice`.
    - parameter mode: The `AVCaptureTorchMode` to set.
    - parameter errorHandler: A closure of type `Error -> Void` that is called on the **main thread** if an error occurs while setting the `AVCaptureTorchMode`.
@@ -476,6 +494,14 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
       }
     }
     
+  }
+  
+  /**
+   Toggles the `AVCaptureTorchMode` for `videoDevice`.
+   - Important: If the current `AVCaptureTorchMode` is set to `.auto`, this will set it to `.on`.
+   */
+  public func toggleTorch(errorHandler: ErrorCompletionHandler? = nil) throws {
+    return try setTorch(torchMode.flipped(), errorHandler: errorHandler)
   }
   
   /**
@@ -638,7 +664,12 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   
 }
 
-extension AVCaptureDevicePosition {
+protocol Flippable {
+  mutating func flip()
+  func flipped() -> Self
+}
+
+extension AVCaptureDevicePosition: Flippable {
   
   mutating func flip() {
     if (self == .back) {
@@ -649,6 +680,42 @@ extension AVCaptureDevicePosition {
   }
   
   func flipped() -> AVCaptureDevicePosition {
+    var copy = self
+    copy.flip()
+    return copy
+  }
+  
+}
+
+extension AVCaptureFlashMode: Flippable {
+  
+  mutating func flip() {
+    if (self == .on) {
+      self = .off
+    } else {
+      self = .on
+    }
+  }
+  
+  internal func flipped() -> AVCaptureFlashMode {
+    var copy = self
+    copy.flip()
+    return copy
+  }
+  
+}
+
+extension AVCaptureTorchMode: Flippable {
+  
+  mutating func flip() {
+    if (self == .on) {
+      self = .off
+    } else {
+      self = .on
+    }
+  }
+  
+  internal func flipped() -> AVCaptureTorchMode {
     var copy = self
     copy.flip()
     return copy
