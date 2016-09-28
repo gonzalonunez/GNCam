@@ -179,20 +179,20 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
       self.removeAllInputs()
       try self.addInputs(inputs)
       
-      DispatchQueue.main.async {
-        if let layerProvider = previewLayerProvider {
-          self.previewLayerProvider = layerProvider
-          layerProvider.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-          layerProvider.previewLayer.session = self.captureSession
-        }
-      }
-      
       self.removeAllOutputs()
       try self.addOutputs(outputs)
       
       didSetUp = true
       
       captureSession.commitConfiguration()
+    }
+    
+    DispatchQueue.main.async {
+      if let layerProvider = previewLayerProvider {
+        self.previewLayerProvider = layerProvider
+        layerProvider.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        layerProvider.previewLayer.session = self.captureSession
+      }
     }
     
     sessionQueue.async {
