@@ -64,6 +64,18 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
     return btn
   }()
   
+  fileprivate lazy var flashButton: UIButton = {
+    let btn = UIButton(frame: CGRect.zero)
+    
+    let bundle = Bundle(for: CaptureViewController.self)
+    let flashOff = UIImage(named: "flashOff", in: bundle, compatibleWith: nil)
+    
+    btn.setImage(flashOff, for: .normal)
+    btn.addTarget(self, action: #selector(handleFlashButton(_:)), for: .touchUpInside)
+    
+    return btn
+  }()
+  
   fileprivate lazy var captureButton: UIButton = {
     let btn = UIButton(frame: CGRect.zero)
     btn.backgroundColor = .white
@@ -131,6 +143,7 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
     setUpCloseButton()
     setUpCameraSwitchButton()
     setUpCaptureButton()
+    setUpFlashButton()
   }
   
   fileprivate func setUpCloseButton() {
@@ -156,6 +169,18 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
     let height = cameraSwitchButton.heightAnchor.constraint(equalToConstant: 44)
     
     NSLayoutConstraint.activate([top, right, width, height])
+  }
+  
+  fileprivate func setUpFlashButton() {
+    flashButton.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(flashButton)
+    
+    let top = flashButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 16)
+    let centerX = flashButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+    let width = flashButton.widthAnchor.constraint(equalToConstant: 44)
+    let height = flashButton.heightAnchor.constraint(equalToConstant: 44)
+    
+    NSLayoutConstraint.activate([top, centerX, width, height])
   }
   
   fileprivate func setUpCaptureButton() {
@@ -196,7 +221,22 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   }
   
   @objc fileprivate func handleCameraSwitchButton(_: UIButton) {
+    let wantsFront = (captureManager.videoDevicePosition == .back)
+    flashButton.isHidden = wantsFront
     toggleCamera()
+  }
+  
+  @objc fileprivate func handleFlashButton(_: UIButton) {
+    let wantsFlash = (captureManager.flashMode == .off)
+    do {
+      try captureManager.toggleFlash()
+      let imageName = wantsFlash ? "flashOn" : "flashOff"
+      let bundle = Bundle(for: CaptureViewController.self)
+      let image = UIImage(named: imageName, in: bundle, compatibleWith: nil)
+      flashButton.setImage(image, for: .normal)
+    } catch {
+      print("Woops, got an error: \(error)")
+    }
   }
   
   @objc fileprivate func handleCaptureButtonTouchDown(_: UIButton) {
@@ -222,11 +262,10 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   
   @objc fileprivate func handleViewTap(_ tap: UITapGestureRecognizer) {
     let loc = tap.location(in: view)
-    
     do {
       try captureManager.focusAndExposure(at: loc)
       showIndicatorView(at: loc)
-    } catch let error {
+    } catch {
       print("Woops, got error: \(error)")
     }
   }

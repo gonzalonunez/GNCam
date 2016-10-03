@@ -486,7 +486,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     sessionQueue.async {
       do {
         try videoDevice.lockForConfiguration()
-        if (!videoDevice.hasTorch || videoDevice.isTorchAvailable) { throw CaptureManagerError.torchNotAvailable }
+        if (!videoDevice.hasTorch || !videoDevice.isTorchAvailable) { throw CaptureManagerError.torchNotAvailable }
         if (!videoDevice.isTorchModeSupported(mode)) { throw CaptureManagerError.torchModeNotSupported }
         videoDevice.torchMode = mode
         videoDevice.unlockForConfiguration()
