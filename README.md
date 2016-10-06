@@ -25,6 +25,8 @@ pod "GNCam"
 
 Gonzalo Nuñez, hello@gonzalonunez.me
 
+Twitter: [@gonzalo__nunez](https://twitter.com/gonzalo__nunez)
+
 ## License
 
 GNCam is available under the MIT license. See the LICENSE file for more info.
