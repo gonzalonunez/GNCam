@@ -14,12 +14,22 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-GNCam is available through [CocoaPods](http://cocoapods.org). To use it, simply add the following line to your Podfile:
+GNCam is available through [CocoaPods](http://cocoapods.org). To use it, simply add `pod 'GNCam'` to your Podfile. Make sure that `use_frameworks!` is also in your Podfile.
+
+It should look something like this:
 
 ```ruby
 use_frameworks!
-pod "GNCam"
-```
+
+target '<MY_TARGET_NAME>' do
+  pod 'GNCam'
+
+  target '<MY_TEST_TARGET_NAME>' do
+    inherit! :search_paths
+
+  end
+end
+``````
 
 ## Author
 
