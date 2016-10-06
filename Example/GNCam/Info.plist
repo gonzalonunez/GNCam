@@ -39,5 +39,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>GNCam-Example needs access to your camera so that you can take images from inside the app.</string>
 </dict>
 </plist>
