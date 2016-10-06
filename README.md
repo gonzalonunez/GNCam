@@ -1,4 +1,4 @@
-<img src="https://github.com/gonzalonunez/GNCam/blob/master/GNCam%20Icon.png" width="200">
+![Icon](/GNCam%20Icon.png)
 # GNCam
 
 [![CI Status](http://img.shields.io/travis/gonzalonunez/GNCam.svg?style=flat)](https://travis-ci.org/gonzalonunez/GNCam)
