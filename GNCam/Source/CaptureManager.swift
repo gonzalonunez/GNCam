@@ -193,7 +193,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
       self.previewLayerProvider = layerProvider
     }
     
-    sessionQueue.async { [unowned self] in
+    sessionQueue.async {
       do {
         try setUpCaptureSession()
       } catch let error {
