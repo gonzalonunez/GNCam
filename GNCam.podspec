@@ -8,13 +8,13 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GNCam'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'A Swift 3 library that uses AVFoundation to interact with the camera on iOS.'
   s.description      = <<-DESC
 GNCam is a Swift 3 library that uses AVFoundation to interact with the camera on iOS.
                         DESC
 
-  s.documentation_url = 
+  s.documentation_url = 'https://github.com/gonzalonunez/GNCam/blob/master/Docs/index.html'
   s.homepage          = 'https://github.com/gonzalonunez/GNCam'
   s.license           = { :type => 'MIT', :file => 'LICENSE' }
   s.author            = { 'gonzalonunez' => 'hello@gonzalonunez.me' }
