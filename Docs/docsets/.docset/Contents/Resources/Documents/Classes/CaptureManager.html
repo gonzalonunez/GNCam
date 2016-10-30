@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CaptureManager Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/CaptureManager" class="dashAnchor"></a>
+    <a title="CaptureManager Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CaptureManager Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CaptureManager.html">CaptureManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CapturePreviewView.html">CapturePreviewView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CaptureViewController.html">CaptureViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FocusIndicatorView.html">FocusIndicatorView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CaptureManagerError.html">CaptureManagerError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CaptureSessionInput.html">CaptureSessionInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CaptureSessionOutput.html">CaptureSessionOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PopDirection.html">PopDirection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StillImageError.html">StillImageError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CaptureViewControllerDelegate.html">CaptureViewControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/VideoDataOutputDelegate.html">VideoDataOutputDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/VideoPreviewLayerProvider.html">VideoPreviewLayerProvider</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CaptureManager</h1>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC5GNCam14CaptureManager13sharedManagerS0_"></a>
+                    <a name="//apple_ref/swift/Variable/sharedManager" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC5GNCam14CaptureManager13sharedManagerS0_">sharedManager</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager11framesQueueCSo13DispatchQueue"></a>
+                    <a name="//apple_ref/swift/Property/framesQueue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager11framesQueueCSo13DispatchQueue">framesQueue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager12sessionQueueCSo13DispatchQueue"></a>
+                    <a name="//apple_ref/swift/Property/sessionQueue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager12sessionQueueCSo13DispatchQueue">sessionQueue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager8didSetUpSb"></a>
+                    <a name="//apple_ref/swift/Property/didSetUp" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager8didSetUpSb">didSetUp</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager9isRunningSb"></a>
+                    <a name="//apple_ref/swift/Property/isRunning" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager9isRunningSb">isRunning</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager20captureSessionPresetGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/captureSessionPreset" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager20captureSessionPresetGSqSS_">captureSessionPreset</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager19videoDevicePositionOSC23AVCaptureDevicePosition"></a>
+                    <a name="//apple_ref/swift/Property/videoDevicePosition" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager19videoDevicePositionOSC23AVCaptureDevicePosition">videoDevicePosition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager18dataOutputDelegateXwGSqPS_23VideoDataOutputDelegate__"></a>
+                    <a name="//apple_ref/swift/Property/dataOutputDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager18dataOutputDelegateXwGSqPS_23VideoDataOutputDelegate__">dataOutputDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager23desiredVideoOrientationOSC25AVCaptureVideoOrientation"></a>
+                    <a name="//apple_ref/swift/Property/desiredVideoOrientation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager23desiredVideoOrientationOSC25AVCaptureVideoOrientation">desiredVideoOrientation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>AVCaptureVideoOrientation</code> that corresponds to the current device&rsquo;s orientation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">desiredVideoOrientation</span><span class="p">:</span> <span class="kt">AVCaptureVideoOrientation</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager9flashModeOSC18AVCaptureFlashMode"></a>
+                    <a name="//apple_ref/swift/Property/flashMode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager9flashModeOSC18AVCaptureFlashMode">flashMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>AVCaptureFlashMode</code> of <code>videoDevice</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">flashMode</span><span class="p">:</span> <span class="kt">AVCaptureFlashMode</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager9torchModeOSC18AVCaptureTorchMode"></a>
+                    <a name="//apple_ref/swift/Property/torchMode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager9torchModeOSC18AVCaptureTorchMode">torchMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>AVCaptureTorchMode</code> of <code>videoDevice</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">torchMode</span><span class="p">:</span> <span class="kt">AVCaptureTorchMode</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager19authorizationStatusFT8forInputOS_19CaptureSessionInput_OSC21AVAuthorizationStatus"></a>
+                    <a name="//apple_ref/swift/Method/authorizationStatus(forInput:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager19authorizationStatusFT8forInputOS_19CaptureSessionInput_OSC21AVAuthorizationStatus">authorizationStatus(forInput:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the <code>AVAuthorizationStatus</code> for the <code>mediaType</code> of <code>input</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">authorizationStatus</span><span class="p">(</span><span class="n">forInput</span> <span class="nv">input</span><span class="p">:</span> <span class="kt"><a href="../Enums/CaptureSessionInput.html">CaptureSessionInput</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AVAuthorizationStatus</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>input</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>CaptureSessionInput</code> to inspect the status of.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5GNCam14CaptureManager18mirrorsFrontCameraSb"></a>
+                    <a name="//apple_ref/swift/Property/mirrorsFrontCamera" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5GNCam14CaptureManager18mirrorsFrontCameraSb">mirrorsFrontCamera</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines whether or not images taken with front camera are mirrored. Default is <code>true</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">mirrorsFrontCamera</span> <span class="o">=</span> <span class="kc">true</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Set%20Up"></a>
+                <a name="//apple_ref/swift/Section/Set Up" class="dashAnchor"></a>
+                <a href="#/Set%20Up">
+                  <h3 class="section-name">Set Up</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager5setUpFT13sessionPresetSS20previewLayerProviderGSqPS_25VideoPreviewLayerProvider__6inputsGSaOS_19CaptureSessionInput_7outputsGSaOS_20CaptureSessionOutput_12errorHandlerFPs5Error_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/setUp(sessionPreset:previewLayerProvider:inputs:outputs:errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager5setUpFT13sessionPresetSS20previewLayerProviderGSqPS_25VideoPreviewLayerProvider__6inputsGSaOS_19CaptureSessionInput_7outputsGSaOS_20CaptureSessionOutput_12errorHandlerFPs5Error_T__T_">setUp(sessionPreset:previewLayerProvider:inputs:outputs:errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set up the AVCaptureSession.</p>
+
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    <p>Recreates inputs/outputs based on <code>sessionPreset</code>.</p>
+
+</div>
+
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <p><code><a href="../Enums/CaptureManagerError.html#/s:FO5GNCam19CaptureManagerError20invalidSessionPresetFMS0_S0_">CaptureManagerError.invalidSessionPreset</a></code> if <code>sessionPreset</code> is not valid.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">(</span><span class="nv">sessionPreset</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                  <span class="nv">previewLayerProvider</span><span class="p">:</span> <span class="kt"><a href="../Protocols/VideoPreviewLayerProvider.html">VideoPreviewLayerProvider</a></span><span class="p">?,</span>
+                  <span class="nv">inputs</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/CaptureSessionInput.html">CaptureSessionInput</a></span><span class="p">],</span>
+                  <span class="nv">outputs</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/CaptureSessionOutput.html">CaptureSessionOutput</a></span><span class="p">],</span>
+                  <span class="nv">errorHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">ErrorCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sessionPreset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>sessionPreset</code> for the <code>AVCaptureSession</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inputs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A mask of options of type <code>CaptureSessionInputs</code> indicating what inputs to add to the <code>AVCaptureSession</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>outputs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A mask of options of type <code>CaptureSessionOutputs</code> indicating what outputs to add to the <code>AVCaptureSession</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure of type <code>(Error) -&gt; Void</code>. Called on the  if anything performed inside of <code>sessionQueue</code> thread throws an error.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Actions"></a>
+                <a name="//apple_ref/swift/Section/Actions" class="dashAnchor"></a>
+                <a href="#/Actions">
+                  <h3 class="section-name">Actions</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager12startRunningFGSqFPs5Error_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/startRunning(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager12startRunningFGSqFPs5Error_T__T_">startRunning(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Start running the <code>AVCaptureSession</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">startRunning</span><span class="p">(</span><span class="n">_</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kt">ErrorCompletionHandler</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager11stopRunningFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/stopRunning()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager11stopRunningFT_T_">stopRunning()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stop running the <code>AVCaptureSession</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">stopRunning</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager17captureStillImageFFTGSqCSo7UIImage_GSqPs5Error___T_T_"></a>
+                    <a name="//apple_ref/swift/Method/captureStillImage(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager17captureStillImageFFTGSqCSo7UIImage_GSqPs5Error___T_T_">captureStillImage(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Capture a still image.
+- parameter completion: A closure of type <code>(UIImage?, Error?) -&gt; Void</code> that is called on the <strong>main thread</strong> upon successful capture of the image or the occurence of an error.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">captureStillImage</span><span class="p">(</span><span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">ImageErrorCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure of type <code>(UIImage?, Error?) -&gt; Void</code> that is called on the  upon successful capture of the image or the occurence of an error.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager19startRecordingMovieFzT15toOutputFileURLV10Foundation3URL17recordingDelegatePSo36AVCaptureFileOutputRecordingDelegate__T_"></a>
+                    <a name="//apple_ref/swift/Method/startRecordingMovie(toOutputFileURL:recordingDelegate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager19startRecordingMovieFzT15toOutputFileURLV10Foundation3URL17recordingDelegatePSo36AVCaptureFileOutputRecordingDelegate__T_">startRecordingMovie(toOutputFileURL:recordingDelegate:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Start recording a video.
+- parameter toOutputFileURL: The URL where the video is recorded to.
+- parameter recordingDelegate: The <code>AVCaptureFileOutputRecordingDelegate</code> for <code>movieFileOutput</code>.
+- Throws: <code><a href="../Enums/CaptureManagerError.html#/s:FO5GNCam19CaptureManagerError18missingMovieOutputFMS0_S0_">CaptureManagerError.missingMovieOutput</a></code> if <code>movieFileOutput</code> is nil.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">startRecordingMovie</span><span class="p">(</span><span class="n">toOutputFileURL</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">recordingDelegate</span><span class="p">:</span> <span class="kt">AVCaptureFileOutputRecordingDelegate</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>toOutputFileURL</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The URL where the video is recorded to.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>recordingDelegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>AVCaptureFileOutputRecordingDelegate</code> for <code>movieFileOutput</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager18stopRecordingMovieFzT_T_"></a>
+                    <a name="//apple_ref/swift/Method/stopRecordingMovie()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager18stopRecordingMovieFzT_T_">stopRecordingMovie()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stop recording a video.
+- Throws: <code><a href="../Enums/CaptureManagerError.html#/s:FO5GNCam19CaptureManagerError18missingMovieOutputFMS0_S0_">CaptureManagerError.missingMovieOutput</a></code> if <code>movieFileOutput</code> is nil.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">stopRecordingMovie</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager12toggleCameraFFPs5Error_T_T_"></a>
+                    <a name="//apple_ref/swift/Method/toggleCamera(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager12toggleCameraFFPs5Error_T_T_">toggleCamera(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Toggles the position of the camera if possible.
+- parameter errorHandler: A closure of type <code>Error -&gt; Void</code> that is called on the <strong>main thread</strong> if no opposite device or input was found.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toggleCamera</span><span class="p">(</span><span class="n">_</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">ErrorCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure of type <code>Error -&gt; Void</code> that is called on the  if no opposite device or input was found.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager8setFlashFzTOSC18AVCaptureFlashMode12errorHandlerGSqFPs5Error_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/setFlash(_:errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager8setFlashFzTOSC18AVCaptureFlashMode12errorHandlerGSqFPs5Error_T___T_">setFlash(_:errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the <code>AVCaptureFlashMode</code> for <code>videoDevice</code>.
+- parameter mode: The <code>AVCaptureFlashMode</code> to set.
+- parameter errorHandler: A closure of type <code>Error -&gt; Void</code> that is called on the <strong>main thread</strong> if an error occurs while setting the <code>AVCaptureFlashMode</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setFlash</span><span class="p">(</span><span class="n">_</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt">AVCaptureFlashMode</span><span class="p">,</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kt">ErrorCompletionHandler</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>AVCaptureFlashMode</code> to set.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure of type <code>Error -&gt; Void</code> that is called on the  if an error occurs while setting the <code>AVCaptureFlashMode</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager11toggleFlashFzT12errorHandlerGSqFPs5Error_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/toggleFlash(errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager11toggleFlashFzT12errorHandlerGSqFPs5Error_T___T_">toggleFlash(errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Toggles the <code>AVCaptureFlashMode</code> for <code>videoDevice</code>.
+- Important: If the current <code>AVCaptureFlashMode</code> is set to <code>.auto</code>, this will set it to <code>.on</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toggleFlash</span><span class="p">(</span><span class="nv">errorHandler</span><span class="p">:</span> <span class="kt">ErrorCompletionHandler</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager8setTorchFzTOSC18AVCaptureTorchMode12errorHandlerGSqFPs5Error_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/setTorch(_:errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager8setTorchFzTOSC18AVCaptureTorchMode12errorHandlerGSqFPs5Error_T___T_">setTorch(_:errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the <code>AVCaptureTorchMode</code> for <code>videoDevice</code>.
+- parameter mode: The <code>AVCaptureTorchMode</code> to set.
+- parameter errorHandler: A closure of type <code>Error -&gt; Void</code> that is called on the <strong>main thread</strong> if an error occurs while setting the <code>AVCaptureTorchMode</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setTorch</span><span class="p">(</span><span class="n">_</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt">AVCaptureTorchMode</span><span class="p">,</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kt">ErrorCompletionHandler</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>AVCaptureTorchMode</code> to set.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure of type <code>Error -&gt; Void</code> that is called on the  if an error occurs while setting the <code>AVCaptureTorchMode</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager11toggleTorchFzT12errorHandlerGSqFPs5Error_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/toggleTorch(errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager11toggleTorchFzT12errorHandlerGSqFPs5Error_T___T_">toggleTorch(errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Toggles the <code>AVCaptureTorchMode</code> for <code>videoDevice</code>.
+- Important: If the current <code>AVCaptureTorchMode</code> is set to <code>.auto</code>, this will set it to <code>.on</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toggleTorch</span><span class="p">(</span><span class="nv">errorHandler</span><span class="p">:</span> <span class="kt">ErrorCompletionHandler</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager16focusAndExposureFzT2atVSC7CGPoint12errorHandlerGSqFPs5Error_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/focusAndExposure(at:errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager16focusAndExposureFzT2atVSC7CGPoint12errorHandlerGSqFPs5Error_T___T_">focusAndExposure(at:errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Focuses the camera at <code>pointInView</code>.
+- parameter pointInView: The point inside of the <code>AVCaptureVideoPreviewLayer</code>.
+- parameter errorHandler: A closure of type <code>Error -&gt; Void</code> that is called on the <strong>main thread</strong> if no device or previewLayerProvider was found or if we failed to lock the device for configuration.
+- Important: Do not normalize! This method handles the normalization for you. Simply pass in the point relative to the preview layer&rsquo;s coordinate system.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">focusAndExposure</span><span class="p">(</span><span class="n">at</span> <span class="nv">pointInView</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kt">ErrorCompletionHandler</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pointInView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The point inside of the <code>AVCaptureVideoPreviewLayer</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure of type <code>Error -&gt; Void</code> that is called on the  if no device or previewLayerProvider was found or if we failed to lock the device for configuration.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/AVCaptureVideoDataOutputSampleBufferDelegate"></a>
+                <a name="//apple_ref/swift/Section/AVCaptureVideoDataOutputSampleBufferDelegate" class="dashAnchor"></a>
+                <a href="#/AVCaptureVideoDataOutputSampleBufferDelegate">
+                  <h3 class="section-name">AVCaptureVideoDataOutputSampleBufferDelegate</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager13captureOutputFTGSQCSo15AVCaptureOutput_21didOutputSampleBufferGSQCSo14CMSampleBuffer_4fromGSQCSo19AVCaptureConnection__T_"></a>
+                    <a name="//apple_ref/swift/Method/captureOutput(_:didOutputSampleBuffer:from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager13captureOutputFTGSQCSo15AVCaptureOutput_21didOutputSampleBufferGSQCSo14CMSampleBuffer_4fromGSQCSo19AVCaptureConnection__T_">captureOutput(_:didOutputSampleBuffer:from:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Helpers"></a>
+                <a name="//apple_ref/swift/Section/Helpers" class="dashAnchor"></a>
+                <a href="#/Helpers">
+                  <h3 class="section-name">Helpers</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5GNCam14CaptureManager18refreshOrientationFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/refreshOrientation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5GNCam14CaptureManager18refreshOrientationFT_T_">refreshOrientation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously refreshes the videoOrientation of the <code>AVCaptureVideoPreviewLayer</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">refreshOrientation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-10-30)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

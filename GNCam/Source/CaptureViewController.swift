@@ -12,6 +12,9 @@ import CoreMedia
 import UIKit
 
 public protocol CaptureViewControllerDelegate: class {
+  /**
+   Called when the `controller` captures an image.
+   */
   func captureViewController(_ controller: CaptureViewController, didCaptureStillImage image: UIImage?)
 }
 
@@ -20,24 +23,36 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   static fileprivate let captureButtonRestingRadius: CGFloat = 3
   static fileprivate let captureButtonElevatedRadius: CGFloat = 7
   
+  /**
+   The inputs used to set up the `AVCaptureSession`.
+  */
   open var inputs = [CaptureSessionInput.video] {
     didSet {
       didChangeInputsOrOutputs()
     }
   }
   
+  /**
+   The outputs used to set up the `AVCaptureSession`.
+  */
   open var outputs = [CaptureSessionOutput.stillImage] {
     didSet {
       didChangeInputsOrOutputs()
     }
   }
   
+  /**
+   Determines whether or not to display the `closeButton` on the top left of `view`.
+  */
   public var dismissable = true {
     didSet {
       closeButton.isHidden = !dismissable
     }
   }
   
+  /**
+   The `CaptureViewControllerDelegate` that will be informed of image capture events.
+  */
   public weak var captureDelegate: CaptureViewControllerDelegate?
   
   fileprivate lazy var closeButton: UIButton = {
@@ -270,6 +285,9 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
     }
   }
   
+  /**
+   Makes a `FocusIndicatorView` pop up and down at `loc`.
+  */
   open func showIndicatorView(at loc: CGPoint) {
     let indicator = FocusIndicatorView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
     indicator.center = loc
@@ -288,6 +306,9 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
 
   //MARK: VideoPreviewLayerProvider
   
+  /**
+   The `AVCaptureVideoPreviewLayer` that will be used with the `AVCaptureSession`.
+  */
   open var previewLayer: AVCaptureVideoPreviewLayer {
     return view.layer as! AVCaptureVideoPreviewLayer
   }

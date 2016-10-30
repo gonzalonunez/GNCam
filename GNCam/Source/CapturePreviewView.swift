@@ -9,6 +9,9 @@
 import UIKit
 import AVFoundation
 
+/**
+ A UIView subclass that overrides the default `layerClass` with `AVCaptureVideoPreviewLayer.self`.
+*/
 open class CapturePreviewView: UIView {
   
   override open class var layerClass: AnyClass {

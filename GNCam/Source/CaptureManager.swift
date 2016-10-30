@@ -4,6 +4,9 @@ import AVFoundation
 import CoreMedia
 
 public protocol VideoPreviewLayerProvider: class {
+  /**
+   The `AVCaptureVideoPreviewLayer` that will be hooked up to the `captureSession`.
+   */
   var previewLayer: AVCaptureVideoPreviewLayer { get }
 }
 
@@ -108,6 +111,7 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   public weak var dataOutputDelegate: VideoDataOutputDelegate?
   fileprivate(set) weak var previewLayerProvider: VideoPreviewLayerProvider?
   
+  /// The `AVCaptureVideoOrientation` that corresponds to the current device's orientation.
   public var desiredVideoOrientation: AVCaptureVideoOrientation {
     switch UIDevice.current.orientation {
     case .portrait, .portraitUpsideDown, .faceUp, .faceDown, .unknown:

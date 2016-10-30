@@ -85,6 +85,7 @@ open class FocusIndicatorView: UIView {
     pop(.down, animated: false)
   }
   
+  /// Makes the view pop in the direction of `dir`. Make sure the view is on-screen to see the results.
   public func pop(_ dir: PopDirection, animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
     switch dir {
     case .up:
@@ -129,6 +130,7 @@ open class FocusIndicatorView: UIView {
     }
   }
   
+  /// Make the view pop up and then pop down.
   public func popUpDown(_ completion: ((Bool) -> Void)? = nil) {
     pop(.up) { _ -> Void in
       self.pop(.down, completion: completion)
