@@ -6,16 +6,19 @@
 //  Copyright (c) 2016 gonzalonunez. All rights reserved.
 //
 
-import GNCam
 import UIKit
 
-class ViewController: UIViewController, CaptureViewControllerDelegate {
+import GNCam
+import AVFoundation
+
+class ViewController: UIViewController, CaptureViewControllerDelegate, MetadataOutputDelegate {
   
   @IBOutlet weak private var imageView: UIImageView!
   
   private lazy var captureVC: CaptureViewController = {
-    let vc = CaptureViewController(inputs: [.video], outputs: [.stillImage])
+    let vc = CaptureViewController(inputs: [.video], outputs: [.stillImage, .metadata([AVMetadataObjectTypeQRCode])])
     vc.captureDelegate = self
+    vc.captureManager.metadataOutputDelegate = self
     return vc
   }()
   
@@ -41,6 +44,25 @@ class ViewController: UIViewController, CaptureViewControllerDelegate {
     }
     
     imageView.image = img
+  }
+  
+  //MARK: MetadataOutputDelegate
+  
+  public func captureManagerDidOutput(metadataObjects: [Any]) {
+    if metadataObjects.isEmpty {
+      captureVC.reactToBarcode(.hidden)
+      return
+    }
+    
+    guard let metadata = metadataObjects[0] as? AVMetadataMachineReadableCodeObject, metadata.type == AVMetadataObjectTypeQRCode,
+          let barcode = captureVC.previewLayer.transformedMetadataObject(for: metadata) else
+    {
+      return
+    }
+    
+    captureVC.reactToBarcode(.showing(barcode.bounds))
+    print("Found QR code with string value: metadata.stringValue")
+    
   }
   
 }

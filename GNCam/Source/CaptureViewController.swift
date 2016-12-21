@@ -18,6 +18,11 @@ public protocol CaptureViewControllerDelegate: class {
   func captureViewController(_ controller: CaptureViewController, didCaptureStillImage image: UIImage?)
 }
 
+public enum BarcodeMode {
+  case showing(CGRect)
+  case hidden
+}
+
 open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   
   static fileprivate let captureButtonRestingRadius: CGFloat = 3
@@ -108,6 +113,24 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
     return btn
   }()
   
+  fileprivate lazy var detectorView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .clear
+    view.layer.borderWidth = 2
+    return view
+  }()
+  
+  public var detectorViewBorderColor: UIColor = .green {
+    didSet {
+      detectorView.layer.borderColor = detectorViewColor.cgColor
+    }
+  }
+  
+  fileprivate var detectorViewCenterX: NSLayoutConstraint!
+  fileprivate var detectorViewCenterY: NSLayoutConstraint!
+  fileprivate var detectorViewWidth: NSLayoutConstraint!
+  fileprivate var detectorViewHeight: NSLayoutConstraint!
+
   fileprivate lazy var viewTap: UITapGestureRecognizer = {
     let tap = UITapGestureRecognizer(target: self, action: #selector(handleViewTap(_:)))
     tap.delaysTouchesEnded = false
@@ -149,16 +172,17 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   //MARK: Set Up
   
   fileprivate func setUp() {
-    setUpButtons()
+    setUpViews()
     setUpGestures()
     setUpCaptureManager()
   }
   
-  fileprivate func setUpButtons() {
+  fileprivate func setUpViews() {
     setUpCloseButton()
     setUpCameraSwitchButton()
     setUpCaptureButton()
     setUpFlashButton()
+    setUpDetectorView()
   }
   
   fileprivate func setUpCloseButton() {
@@ -210,6 +234,20 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
     NSLayoutConstraint.activate([bottom, centerX, width, height])
   }
   
+  fileprivate func setUpDetectorView() {
+    detectorView.translatesAutoresizingMaskIntoConstraints = false
+    detectorView.alpha = 0
+    detectorView.layer.borderColor = detectorViewBorderColor.cgColor
+    view.addSubview(detectorView)
+    
+    detectorViewCenterX = detectorView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+    detectorViewCenterY = detectorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+    detectorViewWidth = detectorView.widthAnchor.constraint(equalToConstant: 44)
+    detectorViewHeight = detectorView.heightAnchor.constraint(equalToConstant: 44)
+    
+    NSLayoutConstraint.activate([detectorViewCenterX, detectorViewCenterY, detectorViewWidth, detectorViewHeight])
+  }
+  
   fileprivate func setUpGestures() {
     view.addGestureRecognizer(viewTap)
     view.addGestureRecognizer(viewDoubleTap)
@@ -220,8 +258,8 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   fileprivate func setUpCaptureManager() {
     captureManager.setUp(sessionPreset: AVCaptureSessionPresetHigh,
                          previewLayerProvider: self,
-                         inputs: [.video],
-                         outputs: [.stillImage])
+                         inputs: inputs,
+                         outputs: outputs)
     { (error) in
       print("Woops, got error: \(error)")
     }
@@ -270,6 +308,26 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
     
     captureManager.captureStillImage() { (image, error) in
       self.captureDelegate?.captureViewController(self, didCaptureStillImage: image)
+    }
+  }
+  
+  public func reactToBarcode(_ mode: BarcodeMode) {
+    switch mode {
+    case .showing(let bounds):
+      detectorViewCenterX.constant = bounds.midX - view.center.x
+      detectorViewCenterY.constant = bounds.midY - view.center.y
+      detectorViewWidth.constant   = bounds.width
+      detectorViewHeight.constant  = bounds.height
+      
+      view.layoutIfNeeded()
+      
+      UIView.animate(withDuration: 0.2) {
+        self.detectorView.alpha = 1
+      }
+    case .hidden:
+      UIView.animate(withDuration: 0.2) {
+        self.detectorView.alpha = 0
+      }
     }
   }
   

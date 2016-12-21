@@ -24,6 +24,13 @@ public protocol VideoDataOutputDelegate: class {
   func captureManagerDidOutput(_ sampleBuffer: CMSampleBuffer)
 }
 
+public protocol MetadataOutputDelegate: class {
+  /**
+   Called when the `CaptureManager` outputs a metadata objects.
+   */
+  func captureManagerDidOutput(metadataObjects: [Any])
+}
+
 /// Input types for the `AVCaptureSession` of a `CaptureManager`
 public enum CaptureSessionInput {
   case video
@@ -44,6 +51,7 @@ public enum CaptureSessionOutput {
   case stillImage
   case videoData
   case movieFile
+  case metadata([String])
 }
 
 /// Error types for `CaptureManager`
@@ -72,7 +80,7 @@ public enum StillImageError: Error {
   case noImage
 }
 
-open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureMetadataOutputObjectsDelegate {
   
   public static let sharedManager = CaptureManager()
   
@@ -107,8 +115,21 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   fileprivate var stillImageOutput: AVCaptureStillImageOutput?
   fileprivate var videoDataOutput: AVCaptureVideoDataOutput?
   fileprivate var movieFileOutput: AVCaptureMovieFileOutput?
+  fileprivate var metadataOutput: AVCaptureMetadataOutput?
   
-  public weak var dataOutputDelegate: VideoDataOutputDelegate?
+  public weak var dataOutputDelegate: VideoDataOutputDelegate? {
+    didSet {
+      videoDataOutput?.setSampleBufferDelegate(self, queue: framesQueue)
+    }
+  }
+  
+  
+  public weak var metadataOutputDelegate: MetadataOutputDelegate? {
+    didSet {
+      metadataOutput?.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+    }
+  }
+  
   fileprivate(set) weak var previewLayerProvider: VideoPreviewLayerProvider?
   
   /// The `AVCaptureVideoOrientation` that corresponds to the current device's orientation.
@@ -268,6 +289,8 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
       try addVideoDataOutput()
     case .movieFile:
       try addMovieFileOutput()
+    case .metadata(let types):
+      try addMetadataOutput(with: types)
     }
   }
   
@@ -285,6 +308,10 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     case .movieFile:
       if let movieFileOutput = movieFileOutput {
         captureSession.removeOutput(movieFileOutput)
+      }
+    case .metadata(let types):
+      if let metadataOutput = metadataOutput {
+        captureSession.removeOutput(metadataOutput)
       }
     }
   }
@@ -559,9 +586,18 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
                             didOutputSampleBuffer sampleBuffer: CMSampleBuffer!,
                             from connection: AVCaptureConnection!)
   {
-    self.dataOutputDelegate?.captureManagerDidOutput(sampleBuffer)
+    dataOutputDelegate?.captureManagerDidOutput(sampleBuffer)
   }
   
+  //MARK: AVCaptureMetadataOutputObjectsDelegate
+  
+  public func captureOutput(_ captureOutput: AVCaptureOutput!,
+                            didOutputMetadataObjects metadataObjects: [Any]!,
+                            from connection: AVCaptureConnection!)
+  {
+    metadataOutputDelegate?.captureManagerDidOutput(metadataObjects: metadataObjects)
+  }
+
   //MARK: Helpers
   
   /// Asynchronously refreshes the videoOrientation of the `AVCaptureVideoPreviewLayer`.
@@ -629,6 +665,17 @@ open class CaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
   fileprivate func addMovieFileOutput() throws {
     movieFileOutput = AVCaptureMovieFileOutput()
     try addCaptureOutput(movieFileOutput!)
+  }
+  
+  /**
+   Create `metadataOutput` and add it to `captureSession`.
+   - Throws: `CaptureManagerError.invalidCaptureOutput` if the output cannot be added to `captureSession`.
+   */
+  fileprivate func addMetadataOutput(with types: [String]) throws {
+    metadataOutput = AVCaptureMetadataOutput()
+    metadataOutput?.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+    try addCaptureOutput(metadataOutput!)
+    metadataOutput?.metadataObjectTypes = types
   }
   
   /**
