@@ -122,7 +122,7 @@ open class CaptureViewController: UIViewController, VideoPreviewLayerProvider {
   
   public var detectorViewBorderColor: UIColor = .green {
     didSet {
-      detectorView.layer.borderColor = detectorViewColor.cgColor
+      detectorView.layer.borderColor = detectorViewBorderColor.cgColor
     }
   }
   
